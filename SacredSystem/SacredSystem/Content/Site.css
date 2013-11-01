@@ -36,6 +36,10 @@ nav, section {
     display: block;
 }
 
+header {
+    background-color:#7ac0da;
+}
+
 mark {
     background-color: #a6dbed;
     padding-left: 5px;
@@ -48,6 +52,10 @@ mark {
 
 .float-right {
     float: right;
+}
+
+.clear {
+    clear: both;
 }
 
 .clear-fix:after {
@@ -105,7 +113,7 @@ h5, h6 {
 }
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
+        background: url("../Images/heroAccent.png") no-repeat;
         padding-left: 10px;
         padding-top: 30px;
     }
@@ -115,7 +123,7 @@ h5, h6 {
     }
 
 header .content-wrapper {
-    padding-top: 20px; 
+    padding-top: 20px;
 }
 
 footer {
@@ -129,17 +137,32 @@ footer {
 /* site title
 ----------------------------------------------------------*/
 .site-title {
-    color: #c8c8c8;
+    color: #ffffff;
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
-    margin: 0;
+    margin: 0 0 22px 0;
 }
 
 .site-title a, .site-title a:hover, .site-title a:active {
     background: none;
-    color: #c8c8c8;
+    color: #ffffff;
     outline: none;
     text-decoration: none;
+}
+
+.top-nav {
+    margin: 32px 0 0;
+    color: #fff;
+}
+.top-nav a:link, .top-nav a:visited, .top-nav a:active {
+    background: none;
+    color: #ffffff;
+    outline: none;
+    text-decoration: none;
+}
+
+.top-nav a:hover {
+    color: #333;
 }
 
 
@@ -359,6 +382,38 @@ aside {
     #loginForm input[type="submit"],
     #loginForm input[type="button"],
     #loginForm button {
+        width: auto;
+    }
+
+#homeLoginForm {
+    margin:0 auto;
+    width: 55%;
+}
+
+    #homeLoginForm .validation-error {
+        display: block;
+        margin-left: 15px;
+    }
+
+    #homeLoginForm .validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    #homeLoginForm .validation-summary-errors li {
+        display: inline;
+        list-style: none;
+        margin: 0;
+    }
+
+    #homeLoginForm input {
+        width: 250px;
+    }
+
+    #homeLoginForm input[type="checkbox"],
+    #homeLoginForm input[type="submit"],
+    #homeLoginForm input[type="button"],
+    #homeLoginForm button {
         width: auto;
     }
 

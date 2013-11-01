@@ -19,7 +19,6 @@ namespace SacredSystem.Controllers
     {
         //
         // GET: /Account/Login
-
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -29,7 +28,6 @@ namespace SacredSystem.Controllers
 
         //
         // POST: /Account/Login
-
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -37,17 +35,21 @@ namespace SacredSystem.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                System.Diagnostics.Debug.WriteLine("Redirecting to " + returnUrl);
                 return RedirectToLocal(returnUrl);
             }
 
-            // If we got this far, something failed, redisplay form
+            // If we got this far, something failed, redisplay form on home page
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            return View(model);
+
+            if (returnUrl == "HomeLogin")
+                return RedirectToAction("Index", "Home", new { error = "The user name or password provided is incorrect." });
+            else
+                return View(model);
         }
 
         //
         // POST: /Account/LogOff
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -79,8 +81,8 @@ namespace SacredSystem.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.Email, model.Password, propertyValues: new { DisplayName = model.DisplayName });
+                    WebSecurity.Login(model.Email, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

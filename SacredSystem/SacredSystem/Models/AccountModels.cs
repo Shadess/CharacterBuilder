@@ -11,7 +11,7 @@ namespace SacredSystem.Models
     public class UsersContext : DbContext
     {
         public UsersContext()
-            : base("DefaultConnection")
+            : base("LocalConnection")
         {
         }
 
@@ -25,6 +25,7 @@ namespace SacredSystem.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string DisplayName { get; set; }
     }
 
     public class RegisterExternalLoginModel
@@ -73,8 +74,13 @@ namespace SacredSystem.Models
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [EmailAddress(ErrorMessage = "Please input a valid email address.")]
+        [Display(Name = "Email / User Name")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Display Name")]
+        public string DisplayName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

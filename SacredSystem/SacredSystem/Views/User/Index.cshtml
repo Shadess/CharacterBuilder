@@ -1,0 +1,14 @@
+﻿@model SacredSystem.Models.ProfileModel
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section CustomPageStyles{
+    <link rel="stylesheet" href="~/Content/ProfileStyle.css" />
+}
+<div class="gravProfileImage">
+    @Html.GravatarImage("tylermboettcher@gmail.com", 202)
+</div>
+<h2>Profile</h2>

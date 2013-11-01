@@ -1,7 +1,48 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model SacredSystem.Models.LoginModel
+@{
+    ViewBag.Title = "Home Page TEST";
 }
-@section featured {
+
+<section id="homeLoginForm">
+<h2>Log In</h2>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Hidden("returnUrl", "HomeLogin")
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+    <p>
+        @Html.ActionLink("Register", "Register", "Account") if you don't have an account.
+    </p>
+}
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<!--
+section featured {
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
@@ -43,3 +84,4 @@
         <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
     </li>
 </ol>
+-->

@@ -2,30 +2,32 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title - Sacred Gaming System</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @RenderSection("CustomPageStyles", required: false)
     </head>
     <body>
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <p class="site-title">@Html.ActionLink("Sacred Gaming System", "Index", "Home")</p>
                 </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
+                <div class="float-right top-nav">
+                    @if (Request.IsAuthenticated) {
+                        <text>
+                            @Html.ActionLink(User.Identity.Name, "Index", "User") | 
+                            @Html.ActionLink("Account", "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" }) | 
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                            }
+                        </text>
+                    }
                 </div>
+                <div class="clear" />
             </div>
         </header>
         <div id="body">
@@ -37,7 +39,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - 9th Batallion, Sacred Gaming System</p>
                 </div>
             </div>
         </footer>
