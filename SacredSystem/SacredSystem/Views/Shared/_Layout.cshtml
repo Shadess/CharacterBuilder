@@ -18,9 +18,9 @@
                 <div class="float-right top-nav">
                     @if (Request.IsAuthenticated) {
                         <text>
-                            @Html.ActionLink(User.Identity.Name, "Index", "User") | 
-                            @Html.ActionLink("Account", "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" }) | 
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+                            @Html.ActionLink(User.Identity.Name, "Index", "User", new { area = "" }, null) | 
+                            @Html.ActionLink("Account", "Manage", "Account", new { area = "" }, htmlAttributes: new { @class = "username", title = "Manage" }) | 
+                            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" })) {
                                 @Html.AntiForgeryToken()
                                 <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                             }

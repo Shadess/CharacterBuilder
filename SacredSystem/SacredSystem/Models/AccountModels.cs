@@ -11,7 +11,7 @@ namespace SacredSystem.Models
     public class UsersContext : DbContext
     {
         public UsersContext()
-            : base("LocalConnection")
+            : base("SacredSystemAlphaConnection")
         {
         }
 

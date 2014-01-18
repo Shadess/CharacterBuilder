@@ -38,7 +38,7 @@ namespace SacredSystem.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("LocalConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("SacredSystemAlphaConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {
