@@ -17,8 +17,8 @@ namespace _9th.Sacred.ApiInterface
             request.Parameters.Add("password", password);
 
             ApiProxy proxy = new ApiProxy(apiUrl);
-
             LoginResponse response = proxy.GetResponse<LoginResponse>(request);
+
             return response;
         }
     }

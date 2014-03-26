@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.Security;
+using _9th.Sacred.ApiInterface;
 using _9th.Sacred.Objects.Responses;
 using _9th.Sacred.WebApp.Models;
 
@@ -24,17 +26,32 @@ namespace _9th.Sacred.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // TODO - Validate login
-                LoginResponse response;
+                LoginResponse response = UserApiProxy.ValidateLogin(ConfigurationManager.AppSettings["SacredApiUrl"], model.UserName, model.Password);
 
-                //if (response.Success)
-                //{
+                if (response.Success)
+                {
+                    SessionInfo.UserToken = response.UserToken.ToString();
+                    FormsAuthentication.SetAuthCookie(model.UserName, true);
 
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("", response.Message);
-                //}
+                    if (response.AutoLogoutInMinutes > 0)
+                    {
+                        Session.Timeout = response.AutoLogoutInMinutes;
+                    }
+
+                    // Redirect to url or user homepage
+                    if (returnUrl != null && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "User");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", response.Message);
+                }
             }
             else
             {
