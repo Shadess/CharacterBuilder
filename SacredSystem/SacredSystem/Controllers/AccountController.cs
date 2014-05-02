@@ -36,6 +36,7 @@ namespace SacredSystem.Controllers
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 System.Diagnostics.Debug.WriteLine("Redirecting to " + returnUrl);
+                System.Diagnostics.Debug.WriteLine("Auth Cookie = " + Request.Cookies[FormsAuthentication.FormsCookieName].Value);
                 return RedirectToLocal(returnUrl);
             }
 

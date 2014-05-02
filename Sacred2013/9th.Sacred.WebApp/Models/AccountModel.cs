@@ -10,6 +10,12 @@ namespace _9th.Sacred.WebApp.Models
     {
     }
 
+    public class LoginRegisterModel
+    {
+        public LoginModel LoginModel { get; set; }
+        public RegisterModel RegisterModel { get; set; }
+    }
+
     public class LoginModel
     {
         [Required]
@@ -20,5 +26,26 @@ namespace _9th.Sacred.WebApp.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+    }
+
+    public class RegisterModel
+    {
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "DisplayName")]
+        public string DisplayName { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "ConfirmPassword")]
+        public string ConfirmPassword { get; set; }
     }
 }

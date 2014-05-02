@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CreateCharacterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -287,16 +288,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLayer\WebServiceModels\WebServiceModels.csproj">
-      <Project>{2bd91184-2dad-4769-9d11-c8f11071d6ee}</Project>
-      <Name>WebServiceModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayer\SacredDataLayer\SacredDataLayer.csproj">
-      <Project>{408aeaa2-5801-4436-b457-42042eea9405}</Project>
-      <Name>SacredDataLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

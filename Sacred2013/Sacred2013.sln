@@ -21,6 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9th.Sacred.WebApp", "9th.Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9th.Sacred.ApiInterface", "9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj", "{69A7F868-1F00-4B3B-8EBE-53F9FD7C2320}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0213AE45-F810-484B-BE4B-83F90A16D13E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,8 +63,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{761A6225-9FFF-416E-A1CF-B0696ABABC41} = {B391CB75-D4BB-42AC-82E9-2399CD009D83}
 		{B430F6E9-E690-4534-802E-57EBE726D0A3} = {B391CB75-D4BB-42AC-82E9-2399CD009D83}
+		{761A6225-9FFF-416E-A1CF-B0696ABABC41} = {B391CB75-D4BB-42AC-82E9-2399CD009D83}
 		{1789D41D-64D1-46D0-B7D4-8102D40995D4} = {77E0144F-14B3-4A7F-AFB7-5CFD4FA46F80}
 		{84C2687E-1448-44DE-BF55-EAB6893757EC} = {DF09F78B-C8A7-4073-AEAE-B217534ECE32}
 		{56ECC62E-F809-490B-AEF4-FFC2ACBA3FB1} = {DF09F78B-C8A7-4073-AEAE-B217534ECE32}

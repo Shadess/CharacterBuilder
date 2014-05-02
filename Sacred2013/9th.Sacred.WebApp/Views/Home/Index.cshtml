@@ -1,34 +1,48 @@
-﻿@model _9th.Sacred.WebApp.Models.LoginModel
+﻿@model _9th.Sacred.WebApp.Models.LoginRegisterModel
 @{
     ViewBag.Title = "Home";
+
+    AjaxOptions options = new AjaxOptions();
+    options.HttpMethod = "POST";
 }
 
 <div class="jumbotron">
     <h1>Sacred System</h1>
     <p class="lead">Sacred System, blah blah blah, something, something. So say we all.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    @*<p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>*@
 </div>
 
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-3">
         <h2>Register</h2>
-        <p>
-            Sign-up for an account today.
-        </p>
-        <p><a class="btn btn-primary" href="http://go.microsoft.com/fwlink/?LinkId=301865">Register</a></p>
+        <p>Sign-up for an account today.</p>
+
+        @*@using (Ajax.BeginForm("Register", "Account", options, new { @autocomplete = "off", @id = "registerForm" }))
+        {*@
+        <form autocomplete="off">
+            @Html.AntiForgeryToken()
+            <p>@Html.TextBoxFor(m => m.RegisterModel.Email, new { @placeholder = "Email" })</p>
+            <p>@Html.TextBoxFor(m => m.RegisterModel.DisplayName, new { @placeholder = "Display Name" })</p>
+            <p>@Html.PasswordFor(m => m.RegisterModel.Password, new { @id = (DateTime.Now.Ticks + 1), @placeholder = "Password", @autocomplete = "off" })</p>
+            <p>@Html.PasswordFor(m => m.RegisterModel.ConfirmPassword, new { @id = (DateTime.Now.Ticks + 3), @placeholder = "Confirm Password", @autocomplete = "off" })</p>
+            <p><input type="submit" class="btn btn-primary" value="Register" /></p>
+        </form>
+        @*}*@
     </div>
     <div class="col-md-3">
         <h2>Login</h2>
         <div>
-            @using (Html.BeginForm(new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
+            @using (Ajax.BeginForm("Login", "Account", options))
             {
                 @Html.AntiForgeryToken()
-                <p>@Html.TextBoxFor(m => m.UserName, new { @id = "UserTextBox", @placeholder = "Username", @autocomplete = "on" })</p>
-                <p>@Html.PasswordFor(m => m.Password, new { @id = DateTime.Now.Ticks, @placeholder = "Password", @autocomplete = "off" })</p>
+                <p>@Html.TextBoxFor(m => m.LoginModel.UserName, new { @id = "Username", @placeholder = "Username", @autocomplete = "on" })</p>
+                <p>@Html.PasswordFor(m => m.LoginModel.Password, new { @id = DateTime.Now.Ticks, @placeholder = "Password", @autocomplete = "off" })</p>
                 <p><input type="submit" class="btn btn-primary" value="Login" /></p>
                 <p>@Html.ValidationSummary(true)</p>
             }
         </div>
     </div>
+
+    <div class="clear"></div>
 </div>
