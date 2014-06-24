@@ -8,6 +8,7 @@ using System.Web.Security;
 using _9th.Sacred.ApiInterface;
 using _9th.Sacred.Objects.Responses;
 using _9th.Sacred.WebApp.Models;
+using _9th.Sacred.WebApp.Classes;
 
 namespace _9th.Sacred.WebApp.Controllers
 {
@@ -22,11 +23,13 @@ namespace _9th.Sacred.WebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(LoginModel model, string returnUrl)
+        public ActionResult Index(LoginRegisterModel dualModel, string returnUrl)
         {
+            LoginModel model = dualModel.LoginModel;
+
             if (ModelState.IsValid)
             {
-                LoginResponse response = UserApiProxy.ValidateLogin(ConfigurationManager.AppSettings["SacredApiUrl"], model.UserName, model.Password);
+                LoginResponse response = UserApiProxy.ValidateLogin(SSConfiguration.WebApiUrl, model.UserName, model.Password);
 
                 if (response.Success)
                 {
@@ -58,7 +61,7 @@ namespace _9th.Sacred.WebApp.Controllers
                 ModelState.AddModelError("", Constants._GENERIC_LOGIN_ERROR_);
             }
 
-            return View(model);
+            return View(dualModel);
         }
 
         public ActionResult About()

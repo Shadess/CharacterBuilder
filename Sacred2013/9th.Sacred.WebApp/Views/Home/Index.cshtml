@@ -18,17 +18,16 @@
         <h2>Register</h2>
         <p>Sign-up for an account today.</p>
 
-        @*@using (Ajax.BeginForm("Register", "Account", options, new { @autocomplete = "off", @id = "registerForm" }))
-        {*@
-        <form autocomplete="off">
+        @using (Ajax.BeginForm("Index", "Home", null, options, new { @autocomplete = "off", @id = "registerForm" }))
+        {
             @Html.AntiForgeryToken()
             <p>@Html.TextBoxFor(m => m.RegisterModel.Email, new { @placeholder = "Email" })</p>
             <p>@Html.TextBoxFor(m => m.RegisterModel.DisplayName, new { @placeholder = "Display Name" })</p>
             <p>@Html.PasswordFor(m => m.RegisterModel.Password, new { @id = (DateTime.Now.Ticks + 1), @placeholder = "Password", @autocomplete = "off" })</p>
             <p>@Html.PasswordFor(m => m.RegisterModel.ConfirmPassword, new { @id = (DateTime.Now.Ticks + 3), @placeholder = "Confirm Password", @autocomplete = "off" })</p>
             <p><input type="submit" class="btn btn-primary" value="Register" /></p>
-        </form>
-        @*}*@
+            <p>@Html.ValidationSummary(true)</p>
+        }
     </div>
     <div class="col-md-3">
         <h2>Login</h2>

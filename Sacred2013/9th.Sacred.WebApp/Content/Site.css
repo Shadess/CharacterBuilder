@@ -3,9 +3,16 @@
 }
 
 body {
-    padding-top: 50px;
     padding-bottom: 50px;
     height: 100%;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    height: 52px;
+    min-height: 52px;
+    background-color: #27282d;
 }
 
 footer {
@@ -17,10 +24,54 @@ footer hr {
 }
 
 
+
+
 /* GENERAL */
 .clear {
     clear: both;
 }
+
+
+
+
+/* HEADER */
+.nav-wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.nav-wrapper > h1 {
+    margin: 0;
+    padding: 0;
+}
+
+header a {
+    color: #fff;
+}
+
+header a:hover, header a:active {
+    color: #72ddea;
+}
+
+.nav-login {
+    float: right;
+    margin: 4px 0 0;
+    font-size: 12px;
+}
+
+.nav-login label {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: #b3b3b3;
+}
+
+.nav-login form > div {
+    float: left;
+    margin-left: 12px;
+}
+
+
 
 
 /* Set padding to keep content from hitting the edges */
