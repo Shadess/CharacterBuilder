@@ -1,26 +1,40 @@
-﻿html {
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
     height: 100%;
 }
 
 body {
-    padding-bottom: 50px;
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
-    margin: 0;
-    padding: 0;
     height: 52px;
-    min-height: 52px;
-    background-color: #27282d;
+    background-color: #3a3d46;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 footer {
-    height: 50px;
+    height: 32px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 12px;
+    background-color: #3a3d46;
+    color: #979797;
 }
 
-footer hr {
-    margin: 0 0 8px;
+footer p {
+    padding: 7px 0 0;
 }
 
 
@@ -31,27 +45,72 @@ footer hr {
     clear: both;
 }
 
+.wide-middle-wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 12px;
+}
+
+.header-hr {
+    width: 102px;
+    height: 4px;
+    border: none;
+}
+
 
 
 
 /* HEADER */
-.nav-wrapper {
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
-.nav-wrapper > h1 {
-    margin: 0;
+header h1 {
+    margin: 3px 0 0;
     padding: 0;
+    float: left;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 header a {
-    color: #fff;
+    text-decoration: none;
+    color: #979797;
 }
 
 header a:hover, header a:active {
-    color: #72ddea;
+    color: #566475;
 }
+
+
+ul.nav {
+    display: inline-block;
+    list-style-type: none;
+    float: left;
+    height: 52px;
+    margin-left: 22px;
+}
+
+ul.nav li {
+    height: 52px;
+    line-height: 52px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+ul.nav li:hover {
+    background-color: #566475;
+}
+
+ul.nav li a {
+    height: 52px;
+    color: #979797;
+    display: block;
+    height: 100%;
+    padding: 0 8px;
+}
+
+ul.nav li a:hover {
+    color: #eaeaea;
+}
+
 
 .nav-login {
     float: right;
@@ -71,17 +130,32 @@ header a:hover, header a:active {
     margin-left: 12px;
 }
 
-
-
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    height: 100%;
+.nav-login form label {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: #b3b3b3;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
+.nav-login form input[type=text], .nav-login form input[type=password] {
+    font-size: 11px;
+    height: 12px;
+    width: 142px;
+    padding: 2px;
+}
+
+.nav-login form input[type=submit] {
+    border: none;
+    height: 20px;
+    padding: 0 8px;
+}
+
+.nav-login form input[type=submit]:hover {
+    cursor: pointer;
+}
+
+
+
 
 /* styles for validation helpers */
 .field-validation-error {
@@ -109,5 +183,206 @@ input[type="checkbox"].input-validation-error {
 }
 
 
+
+
 /* Forms */
 .validation-summary-errors ul {list-style:none; margin-left:-35px;}
+
+
+
+
+/* CONTENT */
+.content-wrapper {
+    display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    margin: 52px 0 32px;
+    background-color: #e3e3e3;
+}
+
+.upwards-ho {
+    margin-top: -4px;
+}
+
+    /* Register Form */
+.register-wrapper {
+    margin: 42px auto 0;
+    width: 80%;
+    max-width: 502px;
+    color: #364351;
+}
+
+.register-wrapper h2 {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.register-wrapper .header-hr {
+    height: 2px;
+    width: 112px;
+    background-color: #364351;
+}
+
+.register-wrapper form input {
+    display: block;
+    margin: 14px 0;
+    padding: 8px;
+    border: 1px solid #364351;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+
+
+/* FONTS */
+/* ROBOTO */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(Fonts/Roboto/Roboto-Thin.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(Fonts/Roboto/Roboto-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(Fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(Fonts/Roboto/Roboto-Medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(Fonts/Roboto/Roboto-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(Fonts/Roboto/Roboto-Black.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(Fonts/Roboto/Roboto-ThinItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(Fonts/Roboto/Roboto-LightItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Roboto Italic'), local('Roboto-Italic'), url(Fonts/Roboto/Roboto-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(Fonts/Roboto/Roboto-MediumItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(Fonts/Roboto/Roboto-BoldItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(Fonts/Roboto/Roboto-BlackItalic.ttf) format('truetype');
+}
+
+
+
+
+/* TITILLIUM WEB */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Titillium WebThin'), local('TitilliumWeb-Thin'), url(Fonts/TitilliumWeb/TitilliumWeb-ExtraLight.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(Fonts/TitilliumWeb/TitilliumWeb-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Titillium Web'), local('TitilliumWeb-Regular'), url(Fonts/TitilliumWeb/TitilliumWeb-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Titillium WebSemiBold'), local('TitilliumWeb-SemiBold'), url(Fonts/TitilliumWeb/TitilliumWeb-SemiBold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Titillium WebBold'), local('TitilliumWeb-Bold'), url(Fonts/TitilliumWeb/TitilliumWeb-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Titillium WebBlack'), local('TitilliumWeb-Black'), url(Fonts/TitilliumWeb/TitilliumWeb-Black.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 200;
+  src: local('Titillium WebThin Italic'), local('TitilliumWeb-ThinItalic'), url(Fonts/TitilliumWeb/TitilliumWeb-ExtraLightItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Titillium WebLight Italic'), local('TitilliumWeb-LightItalic'), url(Fonts/TitilliumWeb/TitilliumWeb-LightItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Titillium WebItalic'), local('TitilliumWeb-Italic'), url(Fonts/TitilliumWeb/TitilliumWeb-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Titillium WebSemiBold Italic'), local('TitilliumWeb-SemiBoldItalic'), url(Fonts/TitilliumWeb/TitilliumWeb-SemiBoldItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Titillium WebBold Italic'), local('TitilliumWeb-BoldItalic'), url(Fonts/TitilliumWeb/TitilliumWeb-BoldItalic.ttf) format('truetype');
+}

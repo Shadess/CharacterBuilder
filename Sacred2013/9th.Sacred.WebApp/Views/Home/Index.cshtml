@@ -6,42 +6,43 @@
     options.HttpMethod = "POST";
 }
 
-<div class="jumbotron">
-    <h1>Sacred System</h1>
-    <p class="lead">Sacred System, blah blah blah, something, something. So say we all.</p>
-    @*<p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>*@
+<div class="sacred-jumbotron upwards-ho">
+    <h2>Sacred RPG System</h2>
+    <hr class="sacred-jumbotron-header-hr" />
+    <p>Welcome to the Sacred pen and paper role-playing game. Blah blibbity blah...</p>
 </div>
 
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3">
-        <h2>Register</h2>
-        <p>Sign-up for an account today.</p>
+<div class="register-wrapper">
+    <h2>Register</h2>
+    <hr class="header-hr" />
+    <form id="homeRegisterForm">
+        @*<label>Email</label>*@
+        <input type="email" name="reg_email" placeholder="Email" aria-label="Email" aria-required="true" required />
 
-        @using (Ajax.BeginForm("Index", "Home", null, options, new { @autocomplete = "off", @id = "registerForm" }))
-        {
-            @Html.AntiForgeryToken()
-            <p>@Html.TextBoxFor(m => m.RegisterModel.Email, new { @placeholder = "Email" })</p>
-            <p>@Html.TextBoxFor(m => m.RegisterModel.DisplayName, new { @placeholder = "Display Name" })</p>
-            <p>@Html.PasswordFor(m => m.RegisterModel.Password, new { @id = (DateTime.Now.Ticks + 1), @placeholder = "Password", @autocomplete = "off" })</p>
-            <p>@Html.PasswordFor(m => m.RegisterModel.ConfirmPassword, new { @id = (DateTime.Now.Ticks + 3), @placeholder = "Confirm Password", @autocomplete = "off" })</p>
-            <p><input type="submit" class="btn btn-primary" value="Register" /></p>
-            <p>@Html.ValidationSummary(true)</p>
-        }
-    </div>
-    <div class="col-md-3">
-        <h2>Login</h2>
-        <div>
-            @using (Ajax.BeginForm("Login", "Account", options))
-            {
-                @Html.AntiForgeryToken()
-                <p>@Html.TextBoxFor(m => m.LoginModel.UserName, new { @id = "Username", @placeholder = "Username", @autocomplete = "on" })</p>
-                <p>@Html.PasswordFor(m => m.LoginModel.Password, new { @id = DateTime.Now.Ticks, @placeholder = "Password", @autocomplete = "off" })</p>
-                <p><input type="submit" class="btn btn-primary" value="Login" /></p>
-                <p>@Html.ValidationSummary(true)</p>
+        <input type="text" name="reg_sir" placeholder="Username" aria-label="Username" aria-required="true" required />
+
+        <input type="password" id="reg_0_passwd" data-type="text" name="reg_passwd" placeholder="Password" value="" aria-label="Password" aria-required="true" required />
+
+        <input type="password" name="reg_confirm_passwd" placeholder="Confirm Password" aria-label="Confirm Password" aria-required="true" required />
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $("#homeRegisterForm").validate({
+        rules: {
+            reg_email: {
+                required: true,
+                email: true
             }
-        </div>
-    </div>
+        }
+    });
 
-    <div class="clear"></div>
-</div>
+    //$("#reg_0_passwd").rules("add", {
+    //    minlength: 6,
+    //    messages: {
+    //        minlength: jQuery.format("Your password must be at least {0} characters in length.")
+    //    }
+    //});
+</script>
