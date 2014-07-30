@@ -16,33 +16,34 @@
     <h2>Register</h2>
     <hr class="header-hr" />
     <form id="homeRegisterForm">
-        @*<label>Email</label>*@
-        <input type="email" name="reg_email" placeholder="Email" aria-label="Email" aria-required="true" required />
+        <div>
+            <input type="email" name="reg_email" placeholder="Email" aria-label="Email" aria-required="true" required />
+            <div class="form-error-icon" data-placement="left" title="Please enter a valid email.">!</div>
+        </div>
 
-        <input type="text" name="reg_sir" placeholder="Username" aria-label="Username" aria-required="true" required />
+        <div>
+            <input type="text" name="reg_sir" placeholder="Username" aria-label="Username" aria-required="true" data-rule-required="true" />
+            <div class="form-error-icon">!</div>
+        </div>
 
-        <input type="password" id="reg_0_passwd" data-type="text" name="reg_passwd" placeholder="Password" value="" aria-label="Password" aria-required="true" required />
+        <div>
+            <input type="password" id="reg_0_passwd" data-type="text" name="reg_passwd" placeholder="Password" value="" aria-label="Password" aria-required="true" data-rule-required="true" />
+            <div class="form-error-icon">!</div>
+        </div>
 
-        <input type="password" name="reg_confirm_passwd" placeholder="Confirm Password" aria-label="Confirm Password" aria-required="true" required />
+        <div>
+            <input type="password" name="reg_confirm_passwd" placeholder="Confirm Password" aria-label="Confirm Password" aria-required="true" data-rule-required="true" />
+            <div class="form-error-icon">!</div>
+        </div>
 
         <button type="submit">Register</button>
     </form>
 </div>
 
+@section scripts {
 <script type="text/javascript">
-    $("#homeRegisterForm").validate({
-        rules: {
-            reg_email: {
-                required: true,
-                email: true
-            }
-        }
-    });
+    $("#homeRegisterForm").validate();
 
-    //$("#reg_0_passwd").rules("add", {
-    //    minlength: 6,
-    //    messages: {
-    //        minlength: jQuery.format("Your password must be at least {0} characters in length.")
-    //    }
-    //});
+    $(".form-error-icon").tooltip();
 </script>
+}

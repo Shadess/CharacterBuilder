@@ -34,6 +34,7 @@ footer {
 }
 
 footer p {
+    margin: 0;
     padding: 7px 0 0;
 }
 
@@ -62,11 +63,12 @@ footer p {
 
 /* HEADER */
 header h1 {
-    margin: 3px 0 0;
+    margin: 11px 0 0;
     padding: 0;
     float: left;
     text-transform: uppercase;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 header a {
@@ -75,7 +77,8 @@ header a {
 }
 
 header a:hover, header a:active {
-    color: #566475;
+    color: #169da2;
+    text-decoration: none;
 }
 
 
@@ -95,10 +98,6 @@ ul.nav li {
     text-transform: uppercase;
 }
 
-ul.nav li:hover {
-    background-color: #566475;
-}
-
 ul.nav li a {
     height: 52px;
     color: #979797;
@@ -108,7 +107,8 @@ ul.nav li a {
 }
 
 ul.nav li a:hover {
-    color: #eaeaea;
+    color: #cbddde;
+    background-color: #169da2;
 }
 
 
@@ -139,19 +139,24 @@ ul.nav li a:hover {
 
 .nav-login form input[type=text], .nav-login form input[type=password] {
     font-size: 11px;
-    height: 12px;
+    height: 22px;
     width: 142px;
     padding: 2px;
 }
 
 .nav-login form input[type=submit] {
     border: none;
-    height: 20px;
-    padding: 0 8px;
+    height: 22px;
+    padding: 1px 8px 0;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .nav-login form input[type=submit]:hover {
     cursor: pointer;
+    background-color: #169da2;
+    color: #cbddde;
 }
 
 
@@ -219,12 +224,20 @@ input[type="checkbox"].input-validation-error {
 .register-wrapper h2 {
     text-transform: uppercase;
     font-weight: 600;
+    margin: 0;
+    padding: 0;
 }
 
 .register-wrapper .header-hr {
     height: 2px;
-    width: 112px;
+    width: auto;
     background-color: #364351;
+    margin: 0;
+    padding: 0;
+}
+
+.register-wrapper form > div {
+    position: relative;
 }
 
 .register-wrapper form input {
@@ -234,8 +247,46 @@ input[type="checkbox"].input-validation-error {
     border: 1px solid #364351;
     border-radius: 3px;
     width: 100%;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.register-wrapper form button {
+    border: 1px solid #364351;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 4px 12px;
+    float: right;
+}
+
+.register-wrapper form button:hover, .register-wrapper form button:active {
+    background-color: #364351;
+    color: #dddddd;
+}
+
+.register-wrapper form .error {
+    border-color: red;
+}
+
+.form-error-icon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 26px;
+    height: 26px;
+    line-height: 24px;
+    background-color: rgba(151, 51, 51, 0.9);
+    border-radius: 3px;
+    color: #eaeaea;
+    font-size: 20px;
+    font-weight: 700;
+    padding-left: 10px;
+    cursor: default;
+}
+
+.form-error-icon a {
+    color: #eaeaea;
 }
 
 

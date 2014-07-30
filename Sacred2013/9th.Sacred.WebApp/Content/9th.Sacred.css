@@ -4,6 +4,7 @@
     width: auto;
     border-radius: 5px;
     background-color: #566475;
+    /*background-color: #169da2;*/
     padding: 22px;
     color: #d3d7da;
     box-shadow: 0 0 4px #2d3949;
@@ -28,6 +29,6 @@
 }
 
 .sacred-jumbotron p {
-    margin: 16px 0;
-    font-weight: 300;
+    margin: 18px 0;
+    font-weight: 400;
 }

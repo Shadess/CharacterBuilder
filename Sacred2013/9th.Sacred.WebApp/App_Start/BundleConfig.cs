@@ -14,6 +14,8 @@ namespace _9th.Sacred.WebApp
                         "~/Scripts/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap-theme.css",
+                      "~/Content/bootstrap.css", 
                       "~/Content/9th.Sacred.css",
                       "~/Content/Site.css"));
         }

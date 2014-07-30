@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="wide-middle-wrapper">
-            <h1>@Html.ActionLink("Sacred", "Index", "Home", null, new { @class = "navbar-brand" })</h1>
+            <h1>@Html.ActionLink("Sacred", "Index", "Home", null)</h1>
 
             <ul class="nav">
                 <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -55,19 +55,6 @@
             <p>&copy; @DateTime.Now.Year - Sacred System - 9th Batallion. All rights reserved.</p>
         </div>
     </footer>
-
-    @*<div class="content-wrapper">
-        <div class="content-container">
-            @RenderBody()
-        </div>
-    </div>
-
-    <footer>
-        <hr />
-        <div class="container">
-            <p>&copy; @DateTime.Now.Year - Sacred System - 9th Batallion. All rights reserved.</p>
-        </div>
-    </footer>*@
 
     @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required: false)
