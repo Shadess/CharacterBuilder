@@ -3,8 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sacred System is a fantasy pen and paper role playing game." />
+
     <title>@ViewBag.Title - Sacred System</title>
     @Styles.Render("~/Content/css")
+
+    <script type="text/javascript">
+        site_domain = '@Request.Url.Authority';
+        site_baseurl = '@Url.Content("~")';
+        api_baseurl = '@System.Configuration.ConfigurationManager.AppSettings["SacredApiUrl"]';
+    </script>
 </head>
 
 <body>

@@ -42,14 +42,14 @@ namespace _9th.Sacred.Business.Services
             if (theUser != null)
             {
                 // PBKDF2 hashing of password and salt
-                Rfc2898DeriveBytes dBytes = new System.Security.Cryptography.Rfc2898DeriveBytes(password, theUser.Salt, 200000);
+                Rfc2898DeriveBytes dBytes = new System.Security.Cryptography.Rfc2898DeriveBytes(password, theUser.Salt, NumKeyIterations);
                 byte[] pass2Check = dBytes.GetBytes(256);
                 
                 if (pass2Check.SequenceEqual(theUser.Password))
                 {
                     // Create user login token
                     UserToken token = new UserToken();
-                    token.UserId = theUser.PrimaryKey;
+                    token.UserId = theUser.Id;
                     token.Token = new Guid();
                     token.Expiration = DateTime.Now.AddDays(7);
 
@@ -65,6 +65,44 @@ namespace _9th.Sacred.Business.Services
             else
             {
                 response.Message = ErrorMessages.NO_USER_WITH_PROVIDED_USERNAME;
+            }
+
+            return response;
+        }
+
+        public RegisterResponse RegisterUser(RegisterUser regUser)
+        {
+            RegisterResponse response = new RegisterResponse();
+
+            try
+            {
+                // Create our random 256 bit salt
+                RNGCryptoServiceProvider rngGod = new System.Security.Cryptography.RNGCryptoServiceProvider();
+                byte[] salt = new byte[32];
+                rngGod.GetBytes(salt);
+
+                // Prepare our password
+                Rfc2898DeriveBytes dBytes = new System.Security.Cryptography.Rfc2898DeriveBytes(regUser.Password, salt, NumKeyIterations);
+
+                User newUser = new User();
+                newUser.Email = regUser.Email;
+                newUser.Username = regUser.UserName;
+                newUser.Password = dBytes.GetBytes(256);
+                newUser.Salt = salt;
+                newUser.Verified = false;
+                newUser.SignUpDate = DateTime.Now;
+
+                // Create our user
+                UsersData data = new UsersData(CurrentDataContext);
+                newUser.Id = data.CreateUser(newUser);
+
+                response.Success = true;
+                response.Message = newUser.Email;
+            }
+            catch (Exception e)
+            {
+                response.Success = false;
+                response.Message = e.Message;
             }
 
             return response;

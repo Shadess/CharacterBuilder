@@ -24,5 +24,10 @@ namespace _9th.Sacred.Business.Services
         {
             get { return new DataContext(_connectionstring, _currentuser); }
         }
+
+        protected int NumKeyIterations
+        {
+            get { return 50000; }
+        }
     }
 }

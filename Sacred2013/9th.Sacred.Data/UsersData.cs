@@ -14,6 +14,14 @@ namespace _9th.Sacred.Data
         private const string SQL_READ_USER_BY_ID = @"Select * from Users where Id = @Id";
         private const string SQL_READ_USER_BY_USERNAME = @"Select * from Users where Username = @Username";
 
+        private const string SQL_CREATE_USER = @"
+            INSERT INTO USERS
+            (EMAIL, USERNAME, PASSWORD, SALT, VERIFIED, SIGNUPDATE)
+            VALUES
+            (@EMAIL, @USERNAME, @PASSWORD, @SALT, @VERIFIED, @SIGNUPDATE);
+            SELECT CONVERT(int, SCOPE_IDENTITY());
+        ";
+
         public UsersData(DataContext context)
             : base(context)
         { }
@@ -54,16 +62,42 @@ namespace _9th.Sacred.Data
             return CreateObjectFromDataRow(data.Tables[0].Rows[0]);
         }
 
+        public int CreateUser(User newUser)
+        {
+            int id = 0;
+
+            using (SqlCommand cmd = new SqlCommand(SQL_CREATE_USER))
+            {
+                LoadParameters(cmd, newUser);
+                id = (int)ExecuteScalarQuery(cmd);
+            }
+
+            return id;
+        }
+
         //--------------------------------------------------
+        private void LoadParameters(SqlCommand cmd, User user)
+        {
+            cmd.Parameters.AddWithValue("@ID", user.Id);
+            cmd.Parameters.AddWithValue("@EMAIL", user.Email);
+            cmd.Parameters.AddWithValue("@USERNAME", user.Username);
+            cmd.Parameters.AddWithValue("@PASSWORD", user.Password);
+            cmd.Parameters.AddWithValue("@SALT", user.Salt);
+            cmd.Parameters.AddWithValue("@VERIFIED", user.Verified);
+            cmd.Parameters.AddWithValue("@SIGNUPDATE", user.SignUpDate);
+        }
+
         public static User CreateObjectFromDataRow(DataRow row)
         {
             User newUser = new User();
 
-            newUser.PrimaryKey = row["Id"] == DBNull.Value ? 0 : Convert.ToInt32(row["Id"]);
-            newUser.UserName = row["Username"] == DBNull.Value ? string.Empty : Convert.ToString(row["Username"]);
-            newUser.Password = row["Password"] == DBNull.Value ? null : (byte[])row["Password"];
-            newUser.Salt = row["Salt"] == DBNull.Value ? null : (byte[])row["Salt"];
-            newUser.DisplayName = row["DisplayName"] == DBNull.Value ? string.Empty : Convert.ToString(row["DisplayName"]);
+            newUser.Id = (row["ID"] == DBNull.Value) ? 0 : Convert.ToInt32(row["Id"]);
+            newUser.Email = (row["EMAIL"] == DBNull.Value) ? string.Empty : Convert.ToString(row["EMAIL"]);
+            newUser.Username = (row["USERNAME"] == DBNull.Value) ? string.Empty : Convert.ToString(row["USERNAME"]);
+            newUser.Password = (row["PASSWORD"] == DBNull.Value) ? null : (byte[])row["PASSWORD"];
+            newUser.Salt = (row["SALT"] == DBNull.Value) ? null : (byte[])row["SALT"];
+            newUser.Verified = (row["VERIFIED"] == DBNull.Value) ? false : Convert.ToBoolean(row["VERIFIED"]);
+            newUser.SignUpDate = (row["SIGNUPDATE"] == DBNull.Value) ? DateTime.MinValue : Convert.ToDateTime(row["SIGNUPDATE"]);
 
             return newUser;
         }

@@ -17,33 +17,31 @@
     <hr class="header-hr" />
     <form id="homeRegisterForm">
         <div>
-            <input type="email" name="reg_email" placeholder="Email" aria-label="Email" aria-required="true" required />
-            <div class="form-error-icon" data-placement="left" title="Please enter a valid email.">!</div>
+            <input type="email" id="reg_email" name="reg_email" placeholder="Email" aria-label="Email" aria-required="true" required />
+            <div class="form-error-icon" data-placement="left" data-toggle="tooltip" title="Please enter a valid email.">!</div>
         </div>
 
         <div>
-            <input type="text" name="reg_sir" placeholder="Username" aria-label="Username" aria-required="true" data-rule-required="true" />
-            <div class="form-error-icon">!</div>
+            <input type="text" id="reg_username" name="reg_username" placeholder="Username" aria-label="Username" aria-required="true" required />
+            <div class="form-error-icon" data-placement="left" data-toggle="tooltip" title="Please enter a username.">!</div>
         </div>
 
         <div>
-            <input type="password" id="reg_0_passwd" data-type="text" name="reg_passwd" placeholder="Password" value="" aria-label="Password" aria-required="true" data-rule-required="true" />
-            <div class="form-error-icon">!</div>
+            <input type="password" id="reg_password" name="reg_password" data-type="text" placeholder="Password" value="" aria-label="Password" aria-required="true" required />
+            <div id="reg_password_error" class="form-error-icon" data-placement="left" data-toggle="tooltip" title="Password must be at least 8 characters in length.">!</div>
         </div>
 
         <div>
-            <input type="password" name="reg_confirm_passwd" placeholder="Confirm Password" aria-label="Confirm Password" aria-required="true" data-rule-required="true" />
-            <div class="form-error-icon">!</div>
+            <input type="password" id="reg_confirm_password" name="reg_confirm_passwd" placeholder="Confirm Password" aria-label="Confirm Password" aria-required="true" required />
+            <div id="reg_confirm_password_error" class="form-error-icon" data-placement="left" data-toggle="tooltip" title="Passwords must match.">!</div>
         </div>
+
+        <div class="alert alert-danger js-home-register-alert" role="alert"></div>
 
         <button type="submit">Register</button>
     </form>
 </div>
 
 @section scripts {
-<script type="text/javascript">
-    $("#homeRegisterForm").validate();
-
-    $(".form-error-icon").tooltip();
-</script>
+<script type="text/javascript" src="~/Scripts/Sacred/LoginScripts.js"></script>
 }
