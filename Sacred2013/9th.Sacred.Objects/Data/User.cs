@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,18 +31,27 @@ namespace _9th.Sacred.Objects.Data
             Password = null;
             Salt = null;
             Verified = false;
-            SignUpDate = DateTime.MinValue;
+            SignUpDate = (DateTime)SqlDateTime.MinValue;
+        }
+
+        public User StripSecurity()
+        {
+            this.Password = null;
+            this.Salt = null;
+
+            return this;
         }
     }
 
-    public class RegisterUser
+    public class InputUser
     {
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        public List<string> Errors { get; set; }
 
-        public RegisterUser()
+        public InputUser()
         {
             InitializeValues();
         }
@@ -53,6 +63,7 @@ namespace _9th.Sacred.Objects.Data
             UserName = string.Empty;
             Password = string.Empty;
             ConfirmPassword = string.Empty;
+            Errors = null;
         }
     }
 }

@@ -1,0 +1,35 @@
+﻿@model _9th.Sacred.Objects.Data.InputUser
+@{
+    ViewBag.IsLoginPage = true;
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sacred-card register-wrapper">
+    <h2 class="card-title">Login</h2>
+
+    @if (Model.Errors != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Html.Raw(Model.Errors[0]);
+        </div>
+    }
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "LoginForm" }))
+    {
+        @Html.AntiForgeryToken();
+
+        <div>
+            <input type="email" id="login_email" name="Email" placeholder="Email" aria-label="Email" aria-required="true" required />
+        </div>
+
+        <div>
+            <input type="password" id="login_password" name="Password" data-type="text" placeholder="Password" value="" aria-label="Password" aria-required="true" required />
+        </div>
+
+        <button type="submit" id="login_submit">Login</button>
+        <div class="clear"></div>
+    }
+</div>
+
+

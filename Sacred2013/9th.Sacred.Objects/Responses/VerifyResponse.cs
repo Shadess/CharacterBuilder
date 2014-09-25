@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace _9th.Sacred.Objects.Responses
 {
-    public class LoginResponse
+    public class VerifyResponse
     {
-        public Guid UserToken { get; set; }
         public bool Success { get; set; }
         public string Message { get; set; }
-        public int AutoLogoutInMinutes { get; set; }
         public User User { get; set; }
 
-        public LoginResponse()
+        public VerifyResponse()
         {
             InitializeValues();
         }
@@ -24,7 +22,7 @@ namespace _9th.Sacred.Objects.Responses
         {
             Success = false;
             Message = string.Empty;
-            AutoLogoutInMinutes = 0;
+            User = null;
         }
     }
 }

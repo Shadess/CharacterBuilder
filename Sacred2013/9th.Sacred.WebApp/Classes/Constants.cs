@@ -15,6 +15,7 @@ namespace _9th.Sacred.WebApp.Classes
         /// <summary>
         /// Session variable names
         /// </summary>
+        public const string _USER_ID_ = "$_userid_$";
         public const string _USER_TOKEN_ = "$_usertoken_$";
     }
 }

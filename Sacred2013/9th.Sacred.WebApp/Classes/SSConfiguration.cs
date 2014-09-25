@@ -10,7 +10,7 @@ namespace _9th.Sacred.WebApp.Classes
     {
         public static string WebApiUrl
         {
-            get { return ConfigurationManager.AppSettings["API_URL"].ToString(); }
+            get { return ConfigurationManager.AppSettings["SacredApiUrl"].ToString(); }
         }
     }
 }

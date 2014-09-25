@@ -22,7 +22,8 @@ namespace _9th.Sacred.ApiInterface
         protected string GetUrl(ApiRequest request)
         {
             var apiCallUrl = new UriBuilder(APIURL);
-            apiCallUrl.Path += "api/" + request.ApiResource;
+            //apiCallUrl.Path += "api/" + request.ApiResource;
+            apiCallUrl.Path += request.ApiResource;
 
             var finalParameters = new Dictionary<string, string>();
 

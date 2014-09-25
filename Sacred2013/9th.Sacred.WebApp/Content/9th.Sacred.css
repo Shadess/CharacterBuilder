@@ -28,4 +28,22 @@
   margin: 18px 0;
   font-weight: 400; }
 
+/* CARDS */
+.sacred-card {
+  background: #e3e5e9;
+  padding: 22px;
+  margin: 22px 0 0;
+  box-shadow: 0 0 4px #3a3d46; }
+
+.sacred-card h2.card-title {
+  margin: 0 0 12px;
+  padding: 0; }
+
+.sacred-card-large p {
+  margin: 4px 0; }
+
+/* ALERTS */
+.alert-danger {
+  background: #ecd0d0; }
+
 /*# sourceMappingURL=9th.Sacred.css.map */

@@ -1,9 +1,6 @@
-﻿@model _9th.Sacred.WebApp.Models.LoginRegisterModel
+﻿@model _9th.Sacred.Objects.Data.InputUser
 @{
     ViewBag.Title = "Home";
-
-    AjaxOptions options = new AjaxOptions();
-    options.HttpMethod = "POST";
 }
 
 <div class="sacred-jumbotron upwards-ho">
@@ -15,7 +12,16 @@
 <div class="register-wrapper">
     <h2>Register</h2>
     <hr class="header-hr" />
-    <form id="homeRegisterForm">
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "homeRegisterForm" }))
+    {
+        @Html.AntiForgeryToken();
+
+        <input type="hidden" id="reg_hidden_email" name="Email" />
+        <input type="hidden" id="reg_hidden_username" name="Username" />
+        <input type="hidden" id="reg_hidden_password" name="Password" />
+        <input type="hidden" id="reg_hidden_confirm_password" name="ConfirmPassword" />
+
         <div>
             <input type="email" id="reg_email" name="reg_email" placeholder="Email" aria-label="Email" aria-required="true" required />
             <div class="form-error-icon" data-placement="left" data-toggle="tooltip" title="Please enter a valid email.">!</div>
@@ -36,12 +42,32 @@
             <div id="reg_confirm_password_error" class="form-error-icon" data-placement="left" data-toggle="tooltip" title="Passwords must match.">!</div>
         </div>
 
-        <div class="alert alert-danger js-home-register-alert" role="alert"></div>
+        if (Model.Errors != null)
+        {
+            <div class="alert alert-danger js-home-register-alert" role="alert">
+                @if (Model.Errors.Count > 1)
+                {
+                    <ul>
+                        @foreach (string error in Model.Errors)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    @Html.Raw(Model.Errors[0]);
+                }
+            </div>
+        }
 
-        <button type="submit">Register</button>
-    </form>
+        <button type="submit" id="reg_submit">Register</button>
+    }
 </div>
 
 @section scripts {
-<script type="text/javascript" src="~/Scripts/Sacred/LoginScripts.js"></script>
+    <script type="text/javascript">
+        var registrationCompleteUrl = '@Url.Action("RegistrationComplete", "Account", new { Email = "__Email__" })';
+    </script>
+    <script type="text/javascript" src="~/Scripts/Sacred/LoginScripts.js"></script>
 }

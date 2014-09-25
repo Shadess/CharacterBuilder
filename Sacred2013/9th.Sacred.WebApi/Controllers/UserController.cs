@@ -12,15 +12,27 @@ namespace _9th.Sacred.WebApi.Controllers
     public class UserController : BaseController
     {
         [HttpGet]
-        public LoginResponse ValidateLogin(string username, string password)
+        public LoginResponse ValidateUser(string email, string password)
         {
-            return MyUserService.ValidateUser(username, password);
+            return MyUserService.ValidateUser(email, password);
+        }
+
+        [HttpGet]
+        public void LogoutUser(int userId)
+        {
+            MyUserService.LogoutUser(userId);
         }
 
         [HttpPost]
-        public RegisterResponse RegisterUser([FromBody] RegisterUser newUser)
+        public RegisterResponse RegisterUser([FromBody] InputUser newUser)
         {
             return MyUserService.RegisterUser(newUser);
+        }
+
+        [HttpGet]
+        public VerifyResponse VerifyUserRegistration(int id, string token)
+        {
+            return MyUserService.VerifyUserRegistration(id, token);
         }
     }
 }

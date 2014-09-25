@@ -18,7 +18,7 @@
 <body>
     <header>
         <div class="wide-middle-wrapper">
-            <h1>@Html.ActionLink("Sacred", "Index", "Home", null)</h1>
+            <h1>@Html.ActionLink("Sacred", "Index", "Home")</h1>
 
             <ul class="nav">
                 <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -28,24 +28,29 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     // TODO :: Show logged in information (avatar etc)
+                    @Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "logout-button" });
                 }
-                else
+                else if (ViewBag.IsLoginPage == null)
                 {
                     // Not logged in - show login form
-                    <form id="NavLoginForm">
+                    @*<form id="NavLoginForm">*@
+                    using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "NavLoginForm" }))
+                    {
+                        @Html.AntiForgeryToken();
                         <div>
                             <label>Email</label>
-                            <input type="text" />
+                            <input type="text" name="Email" />
                         </div>
                         <div>
                             <label>Password</label>
-                            <input type="password" />
+                            <input type="password" name="Password" />
                         </div>
                         <div>
                             <label>&nbsp;</label>
                             <input type="submit" value="Login" />
                         </div>
-                    </form>
+                    }
+                    @*</form>*@
                 }
             </div>
             <div class="clearfix"></div>

@@ -35,8 +35,8 @@ namespace _9th.Sacred.WebApp.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "DisplayName")]
-        public string DisplayName { get; set; }
+        [Display(Name = "Username")]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -47,5 +47,12 @@ namespace _9th.Sacred.WebApp.Models
         [DataType(DataType.Password)]
         [Display(Name = "ConfirmPassword")]
         public string ConfirmPassword { get; set; }
+
+        public List<string> Errors { get; set; }
+
+        public RegisterModel()
+        {
+            Errors = new List<string>();
+        }
     }
 }

@@ -1,4 +1,7 @@
 ﻿/* VARIABLES */
+$pagecolor: #f0f0f0;
+$primarycolor: #3a3d46;
+$secondarycolor: #e3e5e9;
 
 /* JUMBOTRON */
 .sacred-jumbotron {
@@ -33,4 +36,28 @@
 .sacred-jumbotron p {
     margin: 18px 0;
     font-weight: 400;
+}
+
+
+/* CARDS */
+.sacred-card {
+    background: $secondarycolor;
+    padding: 22px;
+    margin: 22px 0 0;
+    box-shadow: 0 0 4px $primarycolor;
+}
+
+.sacred-card h2.card-title {
+    margin: 0 0 12px;
+    padding: 0;
+}
+
+.sacred-card-large p {
+    margin: 4px 0;
+}
+
+
+/* ALERTS */
+.alert-danger {
+    background: #ecd0d0;
 }

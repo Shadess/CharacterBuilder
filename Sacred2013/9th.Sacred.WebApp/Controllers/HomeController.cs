@@ -9,6 +9,8 @@ using _9th.Sacred.ApiInterface;
 using _9th.Sacred.Objects.Responses;
 using _9th.Sacred.WebApp.Models;
 using _9th.Sacred.WebApp.Classes;
+using _9th.Sacred.Objects.Data;
+using System.Web.Script.Serialization;
 
 namespace _9th.Sacred.WebApp.Controllers
 {
@@ -17,51 +19,63 @@ namespace _9th.Sacred.WebApp.Controllers
         [AllowAnonymous]
         public ActionResult Index(string returnUrl)
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Profile", "User", new { id = SessionInfo.UserId });
+            }
+
+            InputUser blankUser = new InputUser();
+            return View(blankUser);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(LoginRegisterModel dualModel, string returnUrl)
+        public ActionResult Index(InputUser model, string returnUrl)
         {
-            LoginModel model = dualModel.LoginModel;
-
-            if (ModelState.IsValid)
+            RegisterResponse response = UserApiProxy.RegisterUser(SSConfiguration.WebApiUrl, model);
+            
+            if (response.Success)
             {
-                LoginResponse response = UserApiProxy.ValidateLogin(SSConfiguration.WebApiUrl, model.UserName, model.Password);
-
-                if (response.Success)
+                // Send verification email to user
+                try
                 {
-                    SessionInfo.UserToken = response.UserToken.ToString();
-                    FormsAuthentication.SetAuthCookie(model.UserName, true);
+                    using (System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(
+                        new System.Net.Mail.MailAddress("tylermboettcher@gmail.com", "Sacred System"),
+                        new System.Net.Mail.MailAddress(response.RegisteredUser.Email, response.RegisteredUser.Username)))
+                    {
+                        message.Subject = "Email confirmation";
+                        message.Body = string.Format(@"Dear {0},
+                        <br /><br />
+                        Thank you for registering at Sacred System, please click on the below link to complete your registration.
+                        <br /><br />
+                        <a href='{1}' title='User Email Confirm'>{1}</a>", response.RegisteredUser.Username, Url.Action("Verify", "Account", new { Id = response.RegisteredUser.Id, Token = response.RegisteredToken.Token }, Request.Url.Scheme));
+                        message.IsBodyHtml = true;
 
-                    if (response.AutoLogoutInMinutes > 0)
-                    {
-                        Session.Timeout = response.AutoLogoutInMinutes;
-                    }
-
-                    // Redirect to url or user homepage
-                    if (returnUrl != null && Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "User");
+                        using (System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587))
+                        {
+                            smtp.Credentials = new System.Net.NetworkCredential("tylermboettcher@gmail.com", "setup2Fail");
+                            smtp.EnableSsl = true;
+                            smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                            smtp.Timeout = 20000;
+                            smtp.Send(message);
+                        }
                     }
                 }
-                else
+                catch (Exception e)
                 {
-                    ModelState.AddModelError("", response.Message);
+                    System.Console.WriteLine(e.Message);
                 }
+
+                // Go to registration complete page
+                return RedirectToAction("RegistrationComplete", "Account", new { email = response.RegisteredUser.Email });
             }
             else
             {
-                ModelState.AddModelError("", Constants._GENERIC_LOGIN_ERROR_);
+                model.Errors = response.Errors;
             }
 
-            return View(dualModel);
+            return View(model);
         }
 
         public ActionResult About()

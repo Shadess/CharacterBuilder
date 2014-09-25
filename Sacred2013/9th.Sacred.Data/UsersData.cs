@@ -11,8 +11,10 @@ namespace _9th.Sacred.Data
 {
     public class UsersData : DataAccessBase
     {
-        private const string SQL_READ_USER_BY_ID = @"Select * from Users where Id = @Id";
-        private const string SQL_READ_USER_BY_USERNAME = @"Select * from Users where Username = @Username";
+        private const string SQL_READ_USER_BY_ID = @"Select * from Users where ID = @ID";
+
+        private const string SQL_READ_USER_BY_EMAIL = @"Select * from Users where EMAIL = @EMAIL";
+        //private const string SQL_READ_USER_BY_USERNAME = @"Select * from Users where Username = @Username";
 
         private const string SQL_CREATE_USER = @"
             INSERT INTO USERS
@@ -20,6 +22,21 @@ namespace _9th.Sacred.Data
             VALUES
             (@EMAIL, @USERNAME, @PASSWORD, @SALT, @VERIFIED, @SIGNUPDATE);
             SELECT CONVERT(int, SCOPE_IDENTITY());
+        ";
+
+        private const string SQL_USER_EXISTS = @"
+            select ID from USERS where EMAIL = @EMAIL
+        ";
+
+        private const string SQL_UPDATE_USER = @"
+            UPDATE USERS
+            SET EMAIL = @EMAIL,
+	            USERNAME = @USERNAME,
+	            PASSWORD = @PASSWORD,
+	            SALT = @SALT,
+	            VERIFIED = @VERIFIED,
+	            SIGNUPDATE = @SIGNUPDATE
+            WHERE ID = @ID
         ";
 
         public UsersData(DataContext context)
@@ -44,13 +61,13 @@ namespace _9th.Sacred.Data
             return CreateObjectFromDataRow(data.Tables[0].Rows[0]);
         }
 
-        public User ReadUserByUsername(string username)
+        public User ReadUserByEmail(string email)
         {
             DataSet data = null;
 
-            using (SqlCommand cmd = new SqlCommand(SQL_READ_USER_BY_USERNAME))
+            using (SqlCommand cmd = new SqlCommand(SQL_READ_USER_BY_EMAIL))
             {
-                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@EMAIL", email);
                 data = ExecuteSqlQuery(cmd);
             }
 
@@ -61,6 +78,24 @@ namespace _9th.Sacred.Data
 
             return CreateObjectFromDataRow(data.Tables[0].Rows[0]);
         }
+
+        //public User ReadUserByUsername(string username)
+        //{
+        //    DataSet data = null;
+
+        //    using (SqlCommand cmd = new SqlCommand(SQL_READ_USER_BY_USERNAME))
+        //    {
+        //        cmd.Parameters.AddWithValue("@Username", username);
+        //        data = ExecuteSqlQuery(cmd);
+        //    }
+
+        //    if (DataSetIsEmpty(data))
+        //    {
+        //        return null;
+        //    }
+
+        //    return CreateObjectFromDataRow(data.Tables[0].Rows[0]);
+        //}
 
         public int CreateUser(User newUser)
         {
@@ -73,6 +108,34 @@ namespace _9th.Sacred.Data
             }
 
             return id;
+        }
+
+        public void UpdateUser(User theUser)
+        {
+            using (SqlCommand cmd = new SqlCommand(SQL_UPDATE_USER))
+            {
+                LoadParameters(cmd, theUser);
+                ExecuteSqlNonQuery(cmd);
+            }
+        }
+
+        public bool UserExists(string Email)
+        {
+            bool userExists = false;
+            DataSet data = null;
+
+            using (SqlCommand cmd = new SqlCommand(SQL_USER_EXISTS))
+            {
+                cmd.Parameters.AddWithValue("@EMAIL", Email);
+                data = ExecuteSqlQuery(cmd);
+            }
+
+            if (!DataSetIsEmpty(data))
+            {
+                userExists = true;
+            }
+
+            return userExists;
         }
 
         //--------------------------------------------------
