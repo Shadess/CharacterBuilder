@@ -48,5 +48,15 @@ namespace _9th.Sacred.ApiInterface
             ApiProxy proxy = new ApiProxy(apiUrl);
             return proxy.GetResponse<VerifyResponse>(request);
         }
+
+        public static User GetUserById(string apiUrl, string userToken, int userId)
+        {
+            ApiRequest request = new ApiRequest("User/GetUserById");
+            request.Parameters.Add("userToken", userToken);
+            request.Parameters.Add("userId", userId);
+
+            ApiProxy proxy = new ApiProxy(apiUrl);
+            return proxy.GetResponse<User>(request);
+        }
     }
 }

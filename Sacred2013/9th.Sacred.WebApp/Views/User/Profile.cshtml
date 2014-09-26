@@ -1,7 +1,26 @@
-﻿@{
+﻿@model _9th.Sacred.WebApp.Models.UserModel
+@{
+    ViewBag.Title = Model.User.Username;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Content {
+    <link href="~/Content/Page/Profile.css" type="text/css" rel="stylesheet" />
+}
 
-This is a user's profile
+<div class="sacred-card profile-header">
+    <div class="profile-image">
+        <img src="@Model.GravatarLink()" />
+    </div>
+    <h2>@Model.User.Username</h2>
 
+    <div class="clear"></div>
+</div>
+
+<div class="sacred-card character-container">
+    <h2 class="card-title">Characters</h2>
+</div>
+
+<div class="sacred-card campaign-container">
+    <h2 class="card-title">Campaigns</h2>
+</div>
 

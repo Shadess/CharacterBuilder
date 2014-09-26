@@ -131,6 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionInfo.cs" />
   </ItemGroup>
@@ -147,6 +148,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Fonts\Roboto\LICENSE.txt" />
     <Content Include="Content\Fonts\TitilliumWeb\OFL.txt" />
+    <Content Include="Content\Page\Profile.css">
+      <DependentUpon>Profile.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Page\Profile.min.css">
+      <DependentUpon>Profile.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -182,6 +189,10 @@
     <Content Include="Content\9th.Sacred.scss" />
     <Content Include="Content\9th.Sacred.css.map">
       <DependentUpon>9th.Sacred.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Page\Profile.scss" />
+    <Content Include="Content\Page\Profile.css.map">
+      <DependentUpon>Profile.css</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

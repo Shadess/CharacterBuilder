@@ -167,13 +167,22 @@ namespace _9th.Sacred.Business.Services
             return response;
         }
 
+        public User ReadUserById(int userId)
+        {
+            UsersData data = new UsersData(CurrentDataContext);
+            User user = data.ReadUserById(userId);
 
-        
+            if (user != null)
+            {
+                return user.StripSecurity();
+            }
+            else
+            {
+                return user;
+            }
+        }
 
-
-
-
-        public User GetUserFromUserToken(string usertoken)
+        public User ReadUserByToken(string usertoken)
         {
             UserTokensData tokenData = new UserTokensData(CurrentDataContext);
             int id = tokenData.GetUserIdFromToken(usertoken);
@@ -183,15 +192,7 @@ namespace _9th.Sacred.Business.Services
                 return null;
             }
 
-            return ReadUserByPrimarykey(id);
-        }
-
-        public User ReadUserByPrimarykey(int primarykey)
-        {
-            UsersData data = new UsersData(CurrentDataContext);
-            User user = data.ReadUserById(primarykey);
-
-            return user;
+            return ReadUserById(id);
         }
     }
 }

@@ -14,51 +14,6 @@ namespace _9th.Sacred.WebApp.Controllers
 {
     public class AccountController : Controller
     {
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Login(LoginRegisterModel dualModel, string returnUrl)
-        //{
-        //    // TODO: Login User
-        //    LoginModel model = dualModel.LoginModel;
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        LoginResponse response = UserApiProxy.ValidateLogin(SSConfiguration.WebApiUrl, model.UserName, model.Password);
-
-        //        if (response.Success)
-        //        {
-        //            SessionInfo.UserToken = response.UserToken.ToString();
-        //            FormsAuthentication.SetAuthCookie(model.UserName, true);
-
-        //            if (response.AutoLogoutInMinutes > 0)
-        //            {
-        //                Session.Timeout = response.AutoLogoutInMinutes;
-        //            }
-
-        //            // Redirect to url or user homepage
-        //            if (returnUrl != null && Url.IsLocalUrl(returnUrl))
-        //            {
-        //                return Redirect(returnUrl);
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index", "User");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", response.Message);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ModelState.AddModelError("", Constants._GENERIC_LOGIN_ERROR_);
-        //    }
-
-        //    return RedirectToAction("Index", "Home", new {@returnUrl = returnUrl});
-        //}
-
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -74,10 +29,19 @@ namespace _9th.Sacred.WebApp.Controllers
 
             if (response.Success)
             {
-                // Successful login
+                // Setup our cookies
+                FormsAuthentication.SetAuthCookie(response.UserToken.ToString(), true);
+
+                HttpCookie sacredCookie = new HttpCookie(Constants._COOKIE_NAME_);
+                sacredCookie.Values.Add(Constants._COOKIE_USER_ID_, response.User.Id.ToString());
+                sacredCookie.Values.Add(Constants._COOKIE_USER_TOKEN_, response.UserToken.ToString());
+                sacredCookie.Values.Add(Constants._COOKIE_USER_NAME_, response.User.Username);
+                sacredCookie.Expires = DateTime.Now.AddDays(3.0);
+                Response.Cookies.Add(sacredCookie);
+
+                // Setup our session variables
                 SessionInfo.UserId = response.User.Id.ToString();
                 SessionInfo.UserToken = response.UserToken.ToString();
-                FormsAuthentication.SetAuthCookie(response.User.Email, true);
 
                 if (response.AutoLogoutInMinutes > 0)
                 {
@@ -107,8 +71,11 @@ namespace _9th.Sacred.WebApp.Controllers
         public ActionResult Logout()
         {
             // Delete login tokens
-            UserApiProxy.LogoutUser(SSConfiguration.WebApiUrl, Convert.ToInt32(SessionInfo.UserId));
-
+            HttpCookie sacredCookie = Request.Cookies[Constants._COOKIE_NAME_];
+            UserApiProxy.LogoutUser(SSConfiguration.WebApiUrl, Convert.ToInt32(sacredCookie.Values.Get(Constants._COOKIE_USER_ID_)));
+            sacredCookie.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(sacredCookie);
+            
             FormsAuthentication.SignOut();
             Session.Abandon();
 

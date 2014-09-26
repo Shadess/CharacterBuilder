@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "file": "Profile.css",
+  "sources": [
+    "Profile.scss"
+  ],
+  "names": [],
+  "mappings": ";;AASA;EACI,UAAU;;AAGd;EACI,QAAQ;EACR,eAAe;EACf,OAAO;EACP,QAAQ;EACR,SAAS;EACT,cAAc;;AAGlB,kBAAkB;EACd,aAAa;EACb,gBAAgB"
+}

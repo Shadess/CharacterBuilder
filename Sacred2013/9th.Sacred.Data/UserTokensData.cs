@@ -11,7 +11,7 @@ namespace _9th.Sacred.Data
 {
     public class UserTokensData : DataAccessBase
     {
-        private const string SQL_GET_USERID_FROM_TOKEN = @"Select UserId from UserTokens where Token = @Token and Expiration > GETDATE()";
+        private const string SQL_GET_USERID_FROM_TOKEN = @"Select USERID_FK from UserTokens where TOKEN = @TOKEN and TOKENTYPE = @TOKENTYPE and CREATEDATE > @DATECUTOFF";
 
         private const string SQL_INSERT_NEW_TOKEN = @"
             Insert into UserTokens (USERID_FK, TOKEN, TOKENTYPE, CREATEDATE) Values (@USERID_FK, @TOKEN, @TOKENTYPE, @CREATEDATE);
@@ -40,7 +40,9 @@ namespace _9th.Sacred.Data
         {
             using (SqlCommand cmd = new SqlCommand(SQL_GET_USERID_FROM_TOKEN))
             {
-                cmd.Parameters.AddWithValue("@Token", token);
+                cmd.Parameters.AddWithValue("@TOKEN", token);
+                cmd.Parameters.AddWithValue("@TOKENTYPE", TokenType.Login);
+                cmd.Parameters.AddWithValue("@DATECUTOFF", DateTime.Now.AddDays(-3).ToString());
 
                 object theVal = ExecuteScalarQuery(cmd);
                 

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using _9th.Sacred.ApiInterface;
+using _9th.Sacred.WebApp.Classes;
+using _9th.Sacred.WebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,9 +13,28 @@ namespace _9th.Sacred.WebApp.Controllers
     public class UserController : Controller
     {
         // GET: User Profile
-        public ActionResult Profile(int id)
+        new public ActionResult Profile(int id)
         {
-            return View();
+            UserModel model = new UserModel();
+
+            try
+            {
+                int loggedInUserId = Convert.ToInt32(Request.Cookies[Constants._COOKIE_NAME_].Values.Get(Constants._COOKIE_USER_ID_));
+                model.User = UserApiProxy.GetUserById(SSConfiguration.WebApiUrl, User.Identity.Name, id);
+
+                if (model.User == null || model.User.Id != loggedInUserId)
+                {
+                    // Looking at another's profile
+                    return RedirectToAction("Profile", "User", new { id = loggedInUserId });
+                }
+            }
+            catch (Exception)
+            {
+                // Should be - HttpResponseException
+                return RedirectToAction("Logout", "Account");
+            }
+
+            return View(model);
         }
     }
 }

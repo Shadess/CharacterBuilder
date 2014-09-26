@@ -34,5 +34,12 @@ namespace _9th.Sacred.WebApi.Controllers
         {
             return MyUserService.VerifyUserRegistration(id, token);
         }
+
+        [HttpGet]
+        public User GetUserById(string userToken, int userId)
+        {
+            AuthenticateUserToken(userToken);
+            return MyUserService.ReadUserById(userId);
+        }
     }
 }

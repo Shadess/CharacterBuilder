@@ -1,0 +1,26 @@
+﻿/* VARIABLES */
+$pagecolor: #f0f0f0;
+$primarycolor: #3a3d46;
+$secondarycolor: #e3e5e9;
+
+
+
+
+/* PROFILE HEADER */
+.profile-header {
+    position: relative;
+}
+
+.profile-image {
+    border: 5px solid $pagecolor;
+    border-radius: 4px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    margin-right: 12px;
+}
+
+.profile-header > h2 {
+    line-height: 120px;
+    vertical-align: bottom;
+}
