@@ -12,6 +12,7 @@ namespace _9th.Sacred.WebApp.Models
     {
         public User User { get; set; }
         public bool IsMyProfile { get; set; }
+        public List<Campaign> Campaigns { get; set; }
 
         public UserModel()
         {
@@ -20,7 +21,9 @@ namespace _9th.Sacred.WebApp.Models
 
         public void InitializeValues()
         {
-
+            User = null;
+            IsMyProfile = false;
+            Campaigns = new List<Campaign>();
         }
 
         public string GravatarLink()

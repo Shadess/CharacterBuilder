@@ -21,6 +21,7 @@ namespace _9th.Sacred.WebApp.Controllers
             {
                 int loggedInUserId = Convert.ToInt32(Request.Cookies[Constants._COOKIE_NAME_].Values.Get(Constants._COOKIE_USER_ID_));
                 model.User = UserApiProxy.GetUserById(SSConfiguration.WebApiUrl, User.Identity.Name, id);
+                model.Campaigns = CampaignApiProxy.ReadCampaignsForUser(SSConfiguration.WebApiUrl, User.Identity.Name, id);
 
                 if (model.User == null || model.User.Id != loggedInUserId)
                 {
@@ -28,9 +29,9 @@ namespace _9th.Sacred.WebApp.Controllers
                     return RedirectToAction("Profile", "User", new { id = loggedInUserId });
                 }
             }
-            catch (Exception)
+            catch (System.Web.Http.HttpResponseException)
             {
-                // Should be - HttpResponseException
+                // Not authorized
                 return RedirectToAction("Logout", "Account");
             }
 

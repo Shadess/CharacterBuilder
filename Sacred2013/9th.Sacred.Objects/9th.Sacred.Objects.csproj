@@ -40,9 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Campaign.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Data\UserToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\CampaignRequest.cs" />
+    <Compile Include="Responses\CampaignResponse.cs" />
     <Compile Include="Responses\LoginResponse.cs" />
     <Compile Include="Responses\RegisterResponse.cs" />
     <Compile Include="Responses\VerifyResponse.cs" />

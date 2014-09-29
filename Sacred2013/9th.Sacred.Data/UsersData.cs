@@ -79,24 +79,6 @@ namespace _9th.Sacred.Data
             return CreateObjectFromDataRow(data.Tables[0].Rows[0]);
         }
 
-        //public User ReadUserByUsername(string username)
-        //{
-        //    DataSet data = null;
-
-        //    using (SqlCommand cmd = new SqlCommand(SQL_READ_USER_BY_USERNAME))
-        //    {
-        //        cmd.Parameters.AddWithValue("@Username", username);
-        //        data = ExecuteSqlQuery(cmd);
-        //    }
-
-        //    if (DataSetIsEmpty(data))
-        //    {
-        //        return null;
-        //    }
-
-        //    return CreateObjectFromDataRow(data.Tables[0].Rows[0]);
-        //}
-
         public int CreateUser(User newUser)
         {
             int id = 0;

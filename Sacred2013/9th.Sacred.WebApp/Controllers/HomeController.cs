@@ -21,14 +21,8 @@ namespace _9th.Sacred.WebApp.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                if (!SessionInfo.CurrentSession.IsNewSession)
-                {
-                    return RedirectToAction("Profile", "User", new { id = SessionInfo.UserId });
-                }
-                else
-                {
-
-                }
+                int userId = Convert.ToInt32(Request.Cookies[Constants._COOKIE_NAME_].Values.Get(Constants._COOKIE_USER_ID_));
+                return RedirectToAction("Profile", "User", new { id = userId });
             }
 
             InputUser blankUser = new InputUser();

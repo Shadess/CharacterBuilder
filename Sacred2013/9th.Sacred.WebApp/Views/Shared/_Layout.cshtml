@@ -28,9 +28,9 @@
             <div class="nav-login">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    // TODO :: Show logged in information (avatar etc)
-                    string UserId = Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_].Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_ID_);
-                    string Username = Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_].Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_NAME_);
+                    HttpCookie cookie = Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_];
+                    string UserId = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_ID_);
+                    string Username = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_NAME_);
                     @Html.ActionLink(Username, "Profile", "User", new { id = UserId }, new { @class = "user-home-button" });
                     @Html.Raw(" | ");
                     @Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "logout-button" });

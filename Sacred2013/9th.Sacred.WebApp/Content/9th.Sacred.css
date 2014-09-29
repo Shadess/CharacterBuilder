@@ -33,7 +33,8 @@
   background: #e3e5e9;
   padding: 22px;
   margin: 22px 0 0;
-  box-shadow: 0 0 4px #3a3d46; }
+  box-shadow: 0 0 4px #3a3d46;
+  position: relative; }
 
 .sacred-card h2.card-title {
   margin: 0 0 12px;

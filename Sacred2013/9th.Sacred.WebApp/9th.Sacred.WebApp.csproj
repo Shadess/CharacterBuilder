@@ -67,6 +67,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -125,6 +126,7 @@
     <Compile Include="Classes\SSConfiguration.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +210,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sacred.core.js" />
     <Content Include="Scripts\Sacred\LoginScripts.js" />
+    <Content Include="Scripts\Sacred\ProfileScript.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -228,6 +231,7 @@
     <Content Include="Views\Account\Verify.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\Campaign\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj">

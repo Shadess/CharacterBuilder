@@ -40,7 +40,7 @@ namespace _9th.Sacred.Data
         {
             using (SqlCommand cmd = new SqlCommand(SQL_GET_USERID_FROM_TOKEN))
             {
-                cmd.Parameters.AddWithValue("@TOKEN", token);
+                cmd.Parameters.AddWithValue("@TOKEN", new Guid(token));
                 cmd.Parameters.AddWithValue("@TOKENTYPE", TokenType.Login);
                 cmd.Parameters.AddWithValue("@DATECUTOFF", DateTime.Now.AddDays(-3).ToString());
 

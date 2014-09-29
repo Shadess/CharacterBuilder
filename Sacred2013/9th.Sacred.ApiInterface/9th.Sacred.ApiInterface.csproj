@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ApiProxy.cs" />
     <Compile Include="ApiRequest.cs" />
+    <Compile Include="CampaignApiProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserApiProxy.cs" />
   </ItemGroup>

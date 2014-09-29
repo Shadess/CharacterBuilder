@@ -3,6 +3,9 @@ $pagecolor: #f0f0f0;
 $primarycolor: #3a3d46;
 $secondarycolor: #e3e5e9;
 
+$primaryButtonColor: #12638d;
+$primaryButtonHover: #2f87b5;
+
 
 
 
@@ -23,4 +26,62 @@ $secondarycolor: #e3e5e9;
 .profile-header > h2 {
     line-height: 120px;
     vertical-align: bottom;
+}
+
+.new-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    padding: 4px 7px 4px 8px;
+    background-color: $primaryButtonColor;
+    border: none;
+    color: $secondarycolor;
+    font-size: 16px;
+}
+
+.new-button:hover, .new-button:active {
+    color: $secondarycolor;
+    background-color: $primaryButtonHover;
+}
+
+
+/* CAMPAIGN LIST */
+.campaign-list {
+    margin-top: 22px;
+}
+
+.campaign-list div {
+    position: relative;
+}
+
+.campaign-list a.campaign-link {
+    background-color: $primaryButtonColor;
+    display: inline-block;
+    width: 100%;
+    border: none;
+    color: $secondarycolor;
+    text-align: left;
+    padding: 8px 12px;
+    margin-bottom: 1px;
+}
+
+.campaign-list a.campaign-link:hover,
+.campaign-list a.campaign-link:active {
+    text-decoration: none;
+    background-color: $primaryButtonHover
+}
+
+.campaign-remove {
+    position: absolute;
+    top: 6px;
+    bottom: 7px;
+    right: 6px;
+    width: 24px;
+    border: none;
+    background-color: $secondarycolor;
+    color: $primaryButtonColor;
+}
+
+.campaign-remove span {
+    top: 2px;
 }

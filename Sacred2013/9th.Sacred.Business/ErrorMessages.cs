@@ -15,5 +15,8 @@ namespace _9th.Sacred.Business
         // Register error messages
         public const string REGISTER_DUPLICATE_USER_EMAIL = "A user with that e-mail is already registered.";
         public const string REGISTER_GENERAL_ERROR = "There was an error in registration. Please check your input and try again.";
+
+        // Campaign error messages
+        public const string CAMPAIGN_CREATE_GENERIC = "There was a problem in creating your campaign. Please try again later.";
     }
 }

@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
 using _9th.Sacred.Business.Services;
 using _9th.Sacred.Objects.Data;
+using System.Web.Http;
 
 namespace _9th.Sacred.WebApi.Controllers
 {
@@ -47,6 +47,20 @@ namespace _9th.Sacred.WebApi.Controllers
                 }
 
                 return _userservice;
+            }
+        }
+
+        private CampaignService _campaignservice;
+        public CampaignService MyCampaignService
+        {
+            get
+            {
+                if (_campaignservice == null)
+                {
+                    _campaignservice = new CampaignService(ConnectionString);
+                }
+
+                return _campaignservice;
             }
         }
 

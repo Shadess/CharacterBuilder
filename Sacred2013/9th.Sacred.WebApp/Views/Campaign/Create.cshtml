@@ -1,0 +1,31 @@
+﻿@model string
+@{
+    ViewBag.Title = "Create Campaign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="sacred-card register-wrapper">
+    <h2 class="card-title">Create Campaign</h2>
+
+    @if (Model != null && Model != string.Empty)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Html.Raw(Model);
+        </div>
+    }
+    
+    @using (Html.BeginForm("Create", "Campaign", FormMethod.Post, new { id = "CreateCampaignForm" }))
+    {
+        @Html.AntiForgeryToken();
+
+        <div>
+            <input type="text" id="create_campaign_name" name="Name" placeholder="Name" aria-label="Name" aria-required="true" required maxlength="255" />
+        </div>
+    
+    
+
+        <button type="submit" id="create_campaign_submit">Create</button>
+        <div class="clear"></div>
+    }
+</div>

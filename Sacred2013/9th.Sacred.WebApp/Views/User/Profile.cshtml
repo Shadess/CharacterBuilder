@@ -17,10 +17,29 @@
 </div>
 
 <div class="sacred-card character-container">
+    <a href="" class="new-button js-new-character-button"><span class="glyphicon glyphicon-plus"></span></a>
     <h2 class="card-title">Characters</h2>
 </div>
 
 <div class="sacred-card campaign-container">
+    <a href="@Url.Action("Create", "Campaign")" class="new-button js-new-campaign-button"><span class="glyphicon glyphicon-plus"></span></a>
     <h2 class="card-title">Campaigns</h2>
+
+    @if (Model.Campaigns.Count > 0)
+    {
+        <div class="campaign-list">
+            @foreach (_9th.Sacred.Objects.Data.Campaign campaign in Model.Campaigns)
+            {
+                <div class="campaign-summary">
+                    <button class="campaign-remove js-campaign-remove" data-campaign-id="@campaign.Id"><span class="glyphicon glyphicon-remove"></span></button>
+                    <a href="" class="campaign-link">@Html.Raw(campaign.Name)</a>
+                </div>
+            }
+        </div>
+    }
 </div>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Sacred/ProfileScript.js"></script>
+}
 

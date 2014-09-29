@@ -15,4 +15,52 @@
   line-height: 120px;
   vertical-align: bottom; }
 
+.new-button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  padding: 4px 7px 4px 8px;
+  background-color: #12638d;
+  border: none;
+  color: #e3e5e9;
+  font-size: 16px; }
+
+.new-button:hover, .new-button:active {
+  color: #e3e5e9;
+  background-color: #2f87b5; }
+
+/* CAMPAIGN LIST */
+.campaign-list {
+  margin-top: 22px; }
+
+.campaign-list div {
+  position: relative; }
+
+.campaign-list a.campaign-link {
+  background-color: #12638d;
+  display: inline-block;
+  width: 100%;
+  border: none;
+  color: #e3e5e9;
+  text-align: left;
+  padding: 8px 12px;
+  margin-bottom: 1px; }
+
+.campaign-list a.campaign-link:hover, .campaign-list a.campaign-link:active {
+  text-decoration: none;
+  background-color: #2f87b5; }
+
+.campaign-remove {
+  position: absolute;
+  top: 6px;
+  bottom: 7px;
+  right: 6px;
+  width: 24px;
+  border: none;
+  background-color: #e3e5e9;
+  color: #12638d; }
+
+.campaign-remove span {
+  top: 2px; }
+
 /*# sourceMappingURL=Profile.css.map */
