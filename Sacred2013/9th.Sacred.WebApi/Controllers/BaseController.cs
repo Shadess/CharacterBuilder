@@ -64,6 +64,34 @@ namespace _9th.Sacred.WebApi.Controllers
             }
         }
 
+        private RaceService _raceservice;
+        public RaceService MyRaceService
+        {
+            get
+            {
+                if (_raceservice == null)
+                {
+                    _raceservice = new RaceService(ConnectionString);
+                }
+
+                return _raceservice;
+            }
+        }
+
+        private ClassService _classservice;
+        public ClassService MyClassService
+        {
+            get
+            {
+                if (_classservice == null)
+                {
+                    _classservice = new ClassService(ConnectionString);
+                }
+
+                return _classservice;
+            }
+        }
+
         #endregion
     }
 }

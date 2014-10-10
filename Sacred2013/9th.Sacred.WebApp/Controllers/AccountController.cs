@@ -72,9 +72,12 @@ namespace _9th.Sacred.WebApp.Controllers
         {
             // Delete login tokens
             HttpCookie sacredCookie = Request.Cookies[Constants._COOKIE_NAME_];
-            UserApiProxy.LogoutUser(SSConfiguration.WebApiUrl, Convert.ToInt32(sacredCookie.Values.Get(Constants._COOKIE_USER_ID_)));
-            sacredCookie.Expires = DateTime.Now.AddYears(-1);
-            Response.Cookies.Add(sacredCookie);
+            if (sacredCookie != null)
+            {
+                UserApiProxy.LogoutUser(SSConfiguration.WebApiUrl, Convert.ToInt32(sacredCookie.Values.Get(Constants._COOKIE_USER_ID_)));
+                sacredCookie.Expires = DateTime.Now.AddYears(-1);
+                Response.Cookies.Add(sacredCookie);
+            }
             
             FormsAuthentication.SignOut();
             Session.Abandon();

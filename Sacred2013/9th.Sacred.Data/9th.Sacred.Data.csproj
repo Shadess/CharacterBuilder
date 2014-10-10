@@ -41,9 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CampaignsData.cs" />
+    <Compile Include="ClassesData.cs" />
     <Compile Include="DataAccessBase.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="PowersData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RacesData.cs" />
+    <Compile Include="RacialPowersData.cs" />
     <Compile Include="UsersData.cs" />
     <Compile Include="UserTokensData.cs" />
   </ItemGroup>

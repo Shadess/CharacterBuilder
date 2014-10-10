@@ -1,21 +1,17 @@
-﻿/* VARIABLES */
-$pagecolor: #f0f0f0;
-$primarycolor: #3a3d46;
-$secondarycolor: #e3e5e9;
-
-$primaryButtonColor: #12638d;
-$primaryButtonHover: #2f87b5;
+﻿@import "../variables";
 
 
+$primarycolorlighthover: #b0bec5;
 
 
 /* PROFILE HEADER */
 .profile-header {
     position: relative;
+    color: $textcolorlight;
 }
 
 .profile-image {
-    border: 5px solid $pagecolor;
+    border: 5px solid $primarycolorlight;
     border-radius: 4px;
     float: left;
     margin: 0;
@@ -32,16 +28,15 @@ $primaryButtonHover: #2f87b5;
     position: absolute;
     top: 2px;
     right: 2px;
-    padding: 4px 7px 4px 8px;
-    background-color: $primaryButtonColor;
+    padding: 4px 6px 4px 8px;
+    background-color: $accentcolor;
     border: none;
-    color: $secondarycolor;
+    color: $secondarytextcolordark;
     font-size: 16px;
 }
 
 .new-button:hover, .new-button:active {
-    color: $secondarycolor;
-    background-color: $primaryButtonHover;
+    background-color: $accentcolordark;
 }
 
 
@@ -55,11 +50,11 @@ $primaryButtonHover: #2f87b5;
 }
 
 .campaign-list a.campaign-link {
-    background-color: $primaryButtonColor;
+    background-color: $primarycolorlight;
     display: inline-block;
     width: 100%;
     border: none;
-    color: $secondarycolor;
+    color: $textcolordark;
     text-align: left;
     padding: 8px 12px;
     margin-bottom: 1px;
@@ -68,7 +63,7 @@ $primaryButtonHover: #2f87b5;
 .campaign-list a.campaign-link:hover,
 .campaign-list a.campaign-link:active {
     text-decoration: none;
-    background-color: $primaryButtonHover
+    background-color: $primarycolorlighthover;
 }
 
 .campaign-remove {
@@ -78,10 +73,16 @@ $primaryButtonHover: #2f87b5;
     right: 6px;
     width: 24px;
     border: none;
-    background-color: $secondarycolor;
-    color: $primaryButtonColor;
+    background-color: $accentcolor;
+    color: $secondarytextcolordark;
+}
+
+.campaign-remove:hover,
+.campaign-remove:active {
+    background-color: $accentcolordark;
 }
 
 .campaign-remove span {
     top: 2px;
+    left: -1px;
 }

@@ -123,16 +123,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\SacredSession.cs" />
     <Compile Include="Classes\SSConfiguration.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\CharacterModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionInfo.cs" />
@@ -150,16 +153,33 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Fonts\Roboto\LICENSE.txt" />
     <Content Include="Content\Fonts\TitilliumWeb\OFL.txt" />
+    <Content Include="Content\Page\About.css">
+      <DependentUpon>About.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Page\About.min.css">
+      <DependentUpon>About.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Page\CreateCharacter.css">
+      <DependentUpon>CreateCharacter.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Page\CreateCharacter.min.css">
+      <DependentUpon>CreateCharacter.css</DependentUpon>
+    </Content>
     <Content Include="Content\Page\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
     </Content>
     <Content Include="Content\Page\Profile.min.css">
       <DependentUpon>Profile.css</DependentUpon>
     </Content>
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\Fonts\Roboto\Roboto-Black.ttf" />
     <Content Include="Content\Fonts\Roboto\Roboto-BlackItalic.ttf" />
     <Content Include="Content\Fonts\Roboto\Roboto-Bold.ttf" />
@@ -196,6 +216,19 @@
     <Content Include="Content\Page\Profile.css.map">
       <DependentUpon>Profile.css</DependentUpon>
     </Content>
+    <Content Include="Content\Site.scss" />
+    <Content Include="Content\Site.css.map">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Page\CreateCharacter.scss" />
+    <Content Include="Content\Page\CreateCharacter.css.map">
+      <DependentUpon>CreateCharacter.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Page\About.scss" />
+    <Content Include="Content\Page\About.css.map">
+      <DependentUpon>About.css</DependentUpon>
+    </Content>
+    <Content Include="Content\_variables.scss" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -209,6 +242,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sacred.core.js" />
+    <Content Include="Scripts\Sacred\CharacterCreate.js" />
     <Content Include="Scripts\Sacred\LoginScripts.js" />
     <Content Include="Scripts\Sacred\ProfileScript.js" />
     <Content Include="Scripts\_references.js" />
@@ -232,6 +266,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Campaign\Create.cshtml" />
+    <Content Include="Views\Character\Create.cshtml" />
+    <Content Include="Views\Shared\Character\_ChooseRace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj">

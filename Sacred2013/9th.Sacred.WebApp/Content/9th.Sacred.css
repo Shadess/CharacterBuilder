@@ -1,13 +1,12 @@
 ﻿/* VARIABLES */
+/* END VARIABLES */
 /* JUMBOTRON */
 .sacred-jumbotron {
   margin: 0 auto;
   width: auto;
-  border-radius: 5px;
-  background-color: #566475;
-  /*background-color: #169da2;*/
+  background-color: #607d8b;
   padding: 22px;
-  color: #d3d7da;
+  color: rgba(255, 255, 255, 0.87);
   box-shadow: 0 0 4px #2d3949; }
 
 .sacred-jumbotron h1, .sacred-jumbotron h2, .sacred-jumbotron h4, .sacred-jumbotron h5, .sacred-jumbotron h6 {
@@ -20,7 +19,7 @@
 .sacred-jumbotron-header-hr {
   width: 102px;
   height: 4px;
-  background-color: #d3d7da;
+  background-color: rgba(255, 255, 255, 0.87);
   border: none;
   margin: 10px 0; }
 
@@ -30,18 +29,44 @@
 
 /* CARDS */
 .sacred-card {
-  background: #e3e5e9;
+  background: #607d8b;
   padding: 22px;
   margin: 22px 0 0;
-  box-shadow: 0 0 4px #3a3d46;
+  box-shadow: 0 0 2px #000000;
   position: relative; }
 
 .sacred-card h2.card-title {
   margin: 0 0 12px;
-  padding: 0; }
+  padding: 0;
+  color: rgba(255, 255, 255, 0.87); }
 
 .sacred-card-large p {
   margin: 4px 0; }
+
+/* CARD SIDEBAR */
+.sacred-card-sidebar {
+  float: left;
+  width: 25%;
+  background: #ffffff;
+  box-shadow: 0 0 2px #607d8b;
+  margin-right: 12px; }
+
+.sacred-card-sidebar-filler {
+  background: #fff;
+  box-shadow: 0 0 2px #607d8b;
+  width: auto;
+  overflow: auto;
+  padding: 12px 22px; }
+
+.sacred-card-sidebar-filler h1, .sacred-card-sidebar-filler h2, .sacred-card-sidebar-filler h3, .sacred-card-sidebar-filler h4, .sacred-card-sidebar-filler h5, .sacred-card-sidebar-filler h6 {
+  color: #607d8b; }
+
+/* CONTAINERS */
+.sacred-2-column-container {
+  margin: 22px 0; }
+
+.sacred-2-column-container:after {
+  clear: both; }
 
 /* ALERTS */
 .alert-danger {

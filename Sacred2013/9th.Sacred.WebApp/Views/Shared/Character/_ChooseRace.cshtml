@@ -1,0 +1,71 @@
+﻿@model _9th.Sacred.WebApp.Models.CharacterCreateModel
+
+<div class="sacred-card create-section-header">
+    <h2 class="card-title">Race</h2>
+    <button class="sacred-button-regular create-title-button js-race-next-button">Class <span class="glyphicon glyphicon-chevron-right"></span></button>
+</div>
+
+<div class="sacred-2-column-container">
+    <div class="sacred-card-sidebar">
+        <ul class="race-picker-wrapper char-create-picker-wrapper">
+            @foreach (_9th.Sacred.Objects.Data.Race race in Model.Races)
+            {
+                var divId = "raceId-" + race.Id;
+                if (Model.SavedCharacter.Race == race.Id || (Model.SavedCharacter.Race == 0 && race.Id == 1))
+                {
+                    <li><a href="" class="js-race-picker-button race-selected" data-race-id="@divId">@race.Name</a></li>
+                }
+                else
+                {
+                    <li><a href="" class="js-race-picker-button" data-race-id="@divId">@race.Name</a></li>
+                }
+            }
+        </ul>
+
+    </div>
+
+    <div class="sacred-card-sidebar-filler">
+        @foreach (_9th.Sacred.Objects.Data.Race race in Model.Races)
+        {
+            var divId = "raceId-" + race.Id;
+            var divClass = "hidden";
+            if (Model.SavedCharacter.Race == race.Id || (Model.SavedCharacter.Race == 0 && race.Id == 1))
+            {
+                divClass = "js-race-showing-div";
+            }
+
+            <div id="@divId" class="race-holder @divClass" data-raw-race-id="@race.Id">
+                <h2>@race.Name</h2>
+                <p class="flavor-text">@race.FlavorText</p>
+                <p>@race.Description</p>
+
+                <div class="race-demographics">
+                    <h4>RacialStats</h4>
+
+                    <p>Lifespan: <span>@race.Lifespan</span></p>
+                    <p>Height: <span>@race.Height</span></p>
+                    <p>Origin: <span>@race.Origin</span></p>
+                    <p>Social Status: <span>@race.SocialStatus</span></p>
+                </div>
+
+                <div class="race-powers">
+                    @foreach (_9th.Sacred.Objects.Data.Power power in race.Powers)
+                    {
+                        <div class="race-power-box">
+                            <h5>@power.Name</h5>
+                            <p>@power.Type</p>
+                            @if (Convert.ToInt32(power.Type) > 1)
+                            {
+                                <p>@power.ActionType - @power.EffectType</p>
+                            }
+
+                            <p class="power-description">
+                                @power.Description
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

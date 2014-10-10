@@ -16,6 +16,24 @@ namespace _9th.Sacred.WebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ViewEngines.Engines.Add(new RazorViewEngine
+            {
+                PartialViewLocationFormats = new string[]
+                {
+                    "~/Views/Shared/Character/{0}.cshtml"
+                }
+            });
+        }
+
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(Object sender, EventArgs e)
+        {
+
         }
     }
 }

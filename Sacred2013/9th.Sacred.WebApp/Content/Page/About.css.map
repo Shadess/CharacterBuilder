@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "About.css",
+  "sources": [
+    "About.scss",
+    "../_variables.scss"
+  ],
+  "names": [],
+  "mappings": ";;AAGA;EACI,OAAO;EACP,OAAO"
+}

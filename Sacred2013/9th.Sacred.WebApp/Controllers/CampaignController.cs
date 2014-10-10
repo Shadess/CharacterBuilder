@@ -13,7 +13,6 @@ namespace _9th.Sacred.WebApp.Controllers
 {
     public class CampaignController : Controller
     {
-        // GET: Campaign
         [Authorize]
         public ActionResult Index()
         {
