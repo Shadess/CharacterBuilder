@@ -69,6 +69,7 @@ namespace _9th.Sacred.WebApp.Models
     public enum CreateCharacterSection
     {
         Race = 0,
-        Class = 1
+        Class = 1,
+        Heroic = 2
     }
 }

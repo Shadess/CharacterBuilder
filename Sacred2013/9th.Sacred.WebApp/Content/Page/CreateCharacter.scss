@@ -8,49 +8,26 @@
     margin-top: -10px;
 }
 
-
-
-
-/* RACE SECTION */
-.race-holder > h2 {
-    margin: 0 0 12px;
-    padding: 0;
-}
-
-.race-demographics {
-    margin: 32px 0;
-}
-
-.race-demographics p {
-    margin: 0;
-    padding: 0;
-}
-
-.race-demographics p span {
-    font-weight: bold;
-}
-
-.race-power-box {
+.char-power-box {
     background: $primarycolorlight;
     border-radius: 0;
     margin: 12px 0;
     padding: 4px 12px;
 }
 
-.race-power-box h5 {
+.char-power-box h5 {
     color: $primarycolordark;
     font-weight: bold;
     margin-bottom: 0;
 }
 
-.race-power-box p {
+.char-power-box p {
     margin: 0;
 }
 
-.race-power-box p.power-description {
+.char-power-box p.power-description {
     margin: 12px 0 8px;
 }
-
 
 .char-create-picker-wrapper {
     list-style: none;
@@ -71,6 +48,28 @@
 
 .char-create-picker-wrapper li:last-child a {
     margin-bottom: 0;
+}
+
+
+
+
+/* RACE SECTION */
+.race-holder > h2 {
+    margin: 0 0 12px;
+    padding: 0;
+}
+
+.race-demographics {
+    margin: 32px 0;
+}
+
+.race-demographics p {
+    margin: 0;
+    padding: 0;
+}
+
+.race-demographics p span {
+    font-weight: bold;
 }
 
 .char-create-picker-wrapper li a:hover,
@@ -101,4 +100,36 @@
 .sacred-button-regular {
     height: 28px;
     padding: 0 8px;
+}
+
+
+
+
+/* POWER SECTION */
+.char-powers-list h4 {
+    margin: 42px 0 0;
+    border-bottom: 1px solid $primarycolor;
+}
+
+
+
+
+/* SPECIALIZATION SECTION */
+.specialization-box {
+    margin: 22px 0 8px;
+    font-size: 13px;
+}
+.specialization-box > h6 {
+    font-weight: bold;
+    color: $primarycolordark;
+    font-size: 13px;
+    margin: 0 0 4px;
+}
+.specialization-box > p {
+    display: inline-block;
+    background-color: $primarycolor;
+    width: 100%;
+    padding: 12px 12px;
+    margin: 2px 0;
+    color: $textcolorlight;
 }

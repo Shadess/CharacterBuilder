@@ -21,44 +21,39 @@ namespace _9th.Sacred.WebApp.Controllers
         public ActionResult CreateStart()
         {
             SacredSession.CharCreateModel = null;
-            return RedirectToAction("Create");
+            return RedirectToAction("Create", new { section = CreateCharacterSection.Race });
         }
 
         [Authorize]
-        public ActionResult Create(NewCharacterModel model)
+        [OutputCache(NoStore = true, Duration = 1)]
+        public ActionResult Create(CreateCharacterSection section)
         {
             // Setup our view model
             CharacterCreateModel characterData = new CharacterCreateModel();
-            NewCharacterModel savedCharData = SacredSession.CharCreateModel;
-
-            // Setup view model saved character data
-            if (!model.IsNew)
-            {
-                // If model is not new we have progressed forward
-                savedCharData = model.Copy();
-                model.Section++;
-                characterData.SavedCharacter = model;
-            }
-            else
-            {
-                // Post back so let's get our old save data
-                characterData.SavedCharacter = savedCharData;
-            }
+            characterData.SavedCharacter = SacredSession.CharCreateModel;
+            characterData.SavedCharacter.Section = section;
 
             // Fill in our view model
-            if (characterData.SavedCharacter.Section == CreateCharacterSection.Race)
+            if (section == CreateCharacterSection.Race)
             {
                 characterData.Races = RaceApiProxy.GetAll(SSConfiguration.WebApiUrl, User.Identity.Name);
             }
-            else if (characterData.SavedCharacter.Section == CreateCharacterSection.Class)
+            else if (section == CreateCharacterSection.Class)
             {
                 characterData.Classes = ClassApiProxy.GetAll(SSConfiguration.WebApiUrl, User.Identity.Name);
             }
 
-            // Save the user character data into the session
-            SacredSession.CharCreateModel = savedCharData;
-
             return View(characterData);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult HandleCreate(NewCharacterModel model)
+        {
+            model.Section++;
+            SacredSession.CharCreateModel = model.Copy();
+
+            return RedirectToAction("Create", new { section = model.Section });
         }
     }
 }

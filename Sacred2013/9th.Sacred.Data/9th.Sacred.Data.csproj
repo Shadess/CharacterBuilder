@@ -45,6 +45,7 @@
     <Compile Include="DataAccessBase.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="PowersData.cs" />
+    <Compile Include="PowerSpecializationsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RacesData.cs" />
     <Compile Include="RacialPowersData.cs" />

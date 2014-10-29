@@ -1,4 +1,8 @@
-﻿/* GLOBAL VARS */
+﻿//////////////////////////////////////////////////////////////////////
+//
+//  GLOBAL VARS
+//
+//////////////////////////////////////////////////////////////////////
 var _selectedRaceDiv;
 var _selectedRaceLink;
 var _selectedClassDiv;
@@ -10,7 +14,11 @@ var sCLASS = 0;
 
 
 
-/* DOCUMENT READY */
+//////////////////////////////////////////////////////////////////////
+//
+//  DOCUMENT READY
+//
+//////////////////////////////////////////////////////////////////////
 $(function () {
     _selectedRaceLink = $(".race-picker-wrapper").find("a.race-selected");
     _selectedRaceDiv = $(".js-race-showing-div");
@@ -22,7 +30,13 @@ $(function () {
 
 
 
-/* EVENTS */
+//////////////////////////////////////////////////////////////////////
+//
+//  EVENTS
+//
+//////////////////////////////////////////////////////////////////////
+
+/* RACE SECTION */
 $(document).on("click", ".js-race-picker-button", function () {
     var raceId = $(this).data("race-id");
     
@@ -46,6 +60,9 @@ $(document).on("click", ".js-race-next-button", function () {
     $("#CharacterCreateForm").submit();
 });
 
+
+
+/* CLASS SECTION */
 $(document).on("click", ".js-class-picker-button", function () {
     var classId = $(this).data("class-id");
 
@@ -60,4 +77,11 @@ $(document).on("click", ".js-class-picker-button", function () {
     $(_selectedClassLink).addClass("class-selected");
 
     return false;
+});
+
+$(document).on("click", ".js-class-next-button", function () {
+    sCLASS = $(_selectedClassDiv).data("raw-class-id");
+    $("#CreateClass").val(sCLASS);
+
+    $("#CharacterCreateForm").submit();
 });

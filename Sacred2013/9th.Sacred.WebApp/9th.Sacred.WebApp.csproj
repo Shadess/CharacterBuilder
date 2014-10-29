@@ -268,6 +268,8 @@
     <Content Include="Views\Campaign\Create.cshtml" />
     <Content Include="Views\Character\Create.cshtml" />
     <Content Include="Views\Shared\Character\_ChooseRace.cshtml" />
+    <Content Include="Views\Shared\Character\_ChooseClass.cshtml" />
+    <Content Include="Views\Shared\Character\_HeroicAwakening.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj">

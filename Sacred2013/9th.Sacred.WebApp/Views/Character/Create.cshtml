@@ -8,12 +8,14 @@
 }
 
 <div class="hidden">
-    @using (Html.BeginForm("Create", "Character", FormMethod.Post, new { id = "CharacterCreateForm" }))
+    @using (Html.BeginForm("HandleCreate", "Character", FormMethod.Post, new { id = "CharacterCreateForm" }))
     {
-        @Html.AntiForgeryToken();
+        @*@Html.AntiForgeryToken();*@
 
         <input type="hidden" id="CreateIsNew" name="IsNew" value="false" />
-        <input type="hidden" id="CreateRace" name="Race" />
+        <input type="hidden" id="CreateSection" name="Section" value="@Model.SavedCharacter.Section" />
+        <input type="hidden" id="CreateRace" name="Race" value="@Model.SavedCharacter.Race" />
+        <input type="hidden" id="CreateClass" name="Class" value="@Model.SavedCharacter.Class" />
     }
 </div>
 
@@ -24,47 +26,12 @@
 }
 else if (Model.SavedCharacter.Section == _9th.Sacred.WebApp.Models.CreateCharacterSection.Class)
 {
-    <div class="sacred-card create-section-header">
-        <h2 class="card-title">Class</h2>
-        <button class="sacred-button-regular create-title-button js-race-next-button">Heroic Spirit <span class="glyphicon glyphicon-chevron-right"></span></button>
-    </div>
-    
-    <div class="sacred-2-column-container">
-        <div class="sacred-card-sidebar">
-            <ul class="class-picker-wrapper char-create-picker-wrapper">
-                @foreach (_9th.Sacred.Objects.Data.Class sacredClass in Model.Classes)
-                {
-                    var divId = "classId-" + sacredClass.Id;
-                    if (Model.SavedCharacter.Class == sacredClass.Id || (Model.SavedCharacter.Class == 0 && sacredClass.Id == 1))
-                    {
-                        <li><a href="" class="js-class-picker-button class-selected" data-class-id="@divId">@sacredClass.Name</a></li>
-                    }
-                    else
-                    {
-                        <li><a href="" class="js-class-picker-button" data-class-id="@divId">@sacredClass.Name</a></li>
-                    }
-                }
-            </ul>
-        </div>
-
-        <div class="sacred-card-sidebar-filler">
-            @foreach (_9th.Sacred.Objects.Data.Class sacredClass in Model.Classes)
-            {
-                var divId = "classId-" + sacredClass.Id;
-                var divClass = "hidden";
-                if (Model.SavedCharacter.Class == sacredClass.Id || (Model.SavedCharacter.Class == 0 && sacredClass.Id == 1))
-                {
-                    divClass = "js-class-showing-div";
-                }
-                
-                <div id="@divId" class="race-holder @divClass" data-raw-class-id="@sacredClass.Id">
-                    <h2>@sacredClass.Name</h2>
-                    <p class="flavor-text">@sacredClass.FlavorText</p>
-                    <p>@sacredClass.Description</p>
-                </div>
-            }
-        </div>
-    </div>
+    // Class section
+    @Html.Partial("_ChooseClass", Model);
+}
+else if (Model.SavedCharacter.Section == _9th.Sacred.WebApp.Models.CreateCharacterSection.Heroic)
+{
+    @Html.Partial("_HeroicAwakening", Model);
 }
 
 

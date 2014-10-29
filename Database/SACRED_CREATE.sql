@@ -476,18 +476,19 @@ IF NOT EXISTS (SELECT 1 FROM POWERSPECIALIZATIONS)
 BEGIN
 	INSERT INTO POWERSPECIALIZATIONS (POWERID_FK, DESCRIPTION)
 	VALUES
-	(1, 'If Chloroform is used outside of combat, the creature falls unconscious for an hour and does not see you use Chloroform.'),
-	(1, 'You may use Chloroform twice per encounter.'),
-	(2, 'When you use Hand to Hand, also knock the creature prone. You may use Hand to Hand one additional time per encounter.'),
-	(2, 'You may use Hand to Hand as a Move or Minor Action.'),
-	(3, 'Escape plan no longer requires Mana from your allies.'),
-	(3, 'Escape plan is now an instant teleport, and no longer suffers the 1 mile limitation.'),
-	(4, 'You may use Evasion one additional time per round.'),
-	(4, 'You may use Evasion one additional time per round.'),
-	(5, 'Increase the size to Aura 5.'),
-	(5, 'Reduce the time required to 1 minutes.'),
-	(6, 'Gain +1 Speed while wearing Leather Armor.'),
-	(6, 'Gain +2 Stealth while wearing Leather Armor.'),
-	(0, '')
+	(22, 'If Chloroform is used outside of combat, the creature falls unconscious for an hour and does not see you use Chloroform.'),
+	(22, 'You may use Chloroform twice per encounter.'),
+	(23, 'When you use Hand to Hand, also knock the creature prone. You may use Hand to Hand one additional time per encounter.'),
+	(23, 'You may use Hand to Hand as a Move or Minor Action.'),
+	(24, 'Escape plan no longer requires Mana from your allies.'),
+	(24, 'Escape plan is now an instant teleport, and no longer suffers the 1 mile limitation.'),
+	(25, 'You may use Evasion one additional time per round.'),
+	(25, 'You may use Evasion one additional time per round.'),
+	(26, 'Increase the size to Aura 5.'),
+	(26, 'Reduce the time required to 1 minutes.'),
+	(27, 'Gain +1 Speed while wearing Leather Armor.'),
+	(27, 'Gain +2 Stealth while wearing Leather Armor.'),
+	(28, 'You may use Preparedness four times per day.'),
+	(28, 'Increase the weight limitation to 20lbs. In addition, you gain the ability to create on the fly forgeries and other fake documentation and disguises with Preparedness, as if you had researched the people and cultures you were going to encounter today several weeks ago.')
 END
 GO

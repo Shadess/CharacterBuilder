@@ -20,6 +20,7 @@ namespace _9th.Sacred.Objects.Data
         public string Description { get; set; }
         public int Tier { get; set; }
         public bool Active { get; set; }
+        public List<PowerSpecialization> Specializations { get; set; }
 
         public Power()
         {
@@ -39,6 +40,7 @@ namespace _9th.Sacred.Objects.Data
             Description = string.Empty;
             Tier = 0;
             Active = true;
+            Specializations = new List<PowerSpecialization>();
         }
     }
 
