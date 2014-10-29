@@ -21,8 +21,8 @@ namespace _9th.Sacred.Data
         private const string SQL_GET_ALL_RACES = @"
             SELECT * FROM RACES
             SELECT * FROM POWERS p
-	            INNER JOIN RACES2POWERS rp on rp.POWERID_FK = p.ID
-            WHERE ACTIVE = 1 AND CATEGORY = 1
+	            INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
+            WHERE ACTIVE = 1 and p.CATEGORY = 1 AND pm.CATEGORY = 1
         ";
 
         #endregion
@@ -46,7 +46,7 @@ namespace _9th.Sacred.Data
                 {
                     Race newRace = RacesData.CreateObjectFromDataRow(row);
 
-                    foreach (DataRow powerRow in powerTable.Select("RACEID_FK = " + newRace.Id))
+                    foreach (DataRow powerRow in powerTable.Select("OBJECTID = " + newRace.Id))
                     {
                         newRace.Powers.Add(PowersData.CreateObjectFromDataRow(powerRow));
                     }

@@ -20,14 +20,14 @@ namespace _9th.Sacred.Data
 
         private const string SQL_GET_ALL_CLASSES = @"
             SELECT * FROM CLASSES
-            SELECT * FROM POWERS p
-	            INNER JOIN CLASSES2POWERS rp on rp.POWERID_FK = p.ID
-            WHERE ACTIVE = 1 AND CATEGORY = 2
+            SELECT * FROM POWERS P
+	            INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
+            WHERE ACTIVE = 1 AND p.CATEGORY = 2 AND pm.CATEGORY = 2
             ORDER BY TIER, NAME
             SELECT ps.* FROM POWERSPECIALIZATIONS ps
 	            INNER JOIN POWERS p on p.ID = ps.POWERID_FK
-	            INNER JOIN CLASSES2POWERS cp on cp.POWERID_FK = p.ID
-            WHERE p.ACTIVE = 1 AND p.CATEGORY = 2
+	            INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
+            WHERE p.ACTIVE = 1 AND p.CATEGORY = 2 AND pm.CATEGORY = 2
         ";
 
         #endregion
@@ -56,7 +56,7 @@ namespace _9th.Sacred.Data
                 {
                     Class newClass = ClassesData.CreateObjectFromDataRow(row);
 
-                    foreach (DataRow powerRow in powerTable.Select("CLASSID_FK = " + newClass.Id))
+                    foreach (DataRow powerRow in powerTable.Select("OBJECTID = " + newClass.Id))
                     {
                         Power newPower = PowersData.CreateObjectFromDataRow(powerRow);
                         if (specializationsTable != null)

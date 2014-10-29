@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Data\Campaign.cs" />
     <Compile Include="Data\Class.cs" />
+    <Compile Include="Data\HeroicAwakening.cs" />
     <Compile Include="Data\Power.cs" />
     <Compile Include="Data\PowerSpecialization.cs" />
     <Compile Include="Data\Race.cs" />
