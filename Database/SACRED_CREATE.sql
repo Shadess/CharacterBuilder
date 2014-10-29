@@ -487,7 +487,6 @@ BEGIN
 	(5, 'Increase the size to Aura 5.'),
 	(5, 'Reduce the time required to 1 minutes.'),
 	(6, 'Gain +1 Speed while wearing Leather Armor.'),
-	(6, 'Gain +2 Stealth while wearing Leather Armor.'),
-	(0, '')
+	(6, 'Gain +2 Stealth while wearing Leather Armor.')
 END
 GO
