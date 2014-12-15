@@ -16,6 +16,7 @@ namespace _9th.Sacred.WebApp.Models
         public NewCharacterModel SavedCharacter { get; set; }
         public List<Race> Races { get; set; }
         public List<Class> Classes { get; set; }
+        public List<HeroicAwakening> Heroics { get; set; }
 
         public CharacterCreateModel()
         {

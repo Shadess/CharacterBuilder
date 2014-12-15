@@ -42,6 +42,10 @@ namespace _9th.Sacred.WebApp.Controllers
             {
                 characterData.Classes = ClassApiProxy.GetAll(SSConfiguration.WebApiUrl, User.Identity.Name);
             }
+            else if (section == CreateCharacterSection.Heroic)
+            {
+                characterData.Heroics = HeroicApiProxy.GetAll(SSConfiguration.WebApiUrl, User.Identity.Name);
+            }
 
             return View(characterData);
         }

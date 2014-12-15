@@ -92,6 +92,20 @@ namespace _9th.Sacred.WebApi.Controllers
             }
         }
 
+        private HeroicService _heroicservice;
+        public HeroicService MyHeroicService
+        {
+            get
+            {
+                if (_heroicservice == null)
+                {
+                    _heroicservice = new HeroicService(ConnectionString);
+                }
+
+                return _heroicservice;
+            }
+        }
+
         #endregion
     }
 }

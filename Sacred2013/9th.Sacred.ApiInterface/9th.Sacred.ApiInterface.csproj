@@ -51,6 +51,7 @@
     <Compile Include="ApiRequest.cs" />
     <Compile Include="CampaignApiProxy.cs" />
     <Compile Include="ClassApiProxy.cs" />
+    <Compile Include="HeroicApiProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RaceApiProxy.cs" />
     <Compile Include="UserApiProxy.cs" />

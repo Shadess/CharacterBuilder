@@ -164,6 +164,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\HeroicAwakeningController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
