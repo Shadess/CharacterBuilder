@@ -5,3 +5,7 @@
 var site_domain;
 var site_baseurl;
 var api_baseurl;
+
+var SITE_URL;
+var API_URL;
+var SACRED_COOKIE;

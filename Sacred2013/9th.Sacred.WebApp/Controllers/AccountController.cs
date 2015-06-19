@@ -32,10 +32,13 @@ namespace _9th.Sacred.WebApp.Controllers
                 // Setup our cookies
                 FormsAuthentication.SetAuthCookie(response.UserToken.ToString(), true);
 
+                CookieUser cUser = new CookieUser();
+                cUser.UserId = response.User.Id;
+                cUser.UserName = response.User.Username;
+                cUser.UserToken = response.UserToken.ToString();
+
                 HttpCookie sacredCookie = new HttpCookie(Constants._COOKIE_NAME_);
-                sacredCookie.Values.Add(Constants._COOKIE_USER_ID_, response.User.Id.ToString());
-                sacredCookie.Values.Add(Constants._COOKIE_USER_TOKEN_, response.UserToken.ToString());
-                sacredCookie.Values.Add(Constants._COOKIE_USER_NAME_, response.User.Username);
+                sacredCookie.Value = Newtonsoft.Json.JsonConvert.SerializeObject(cUser);
                 sacredCookie.Expires = DateTime.Now.AddDays(3.0);
                 Response.Cookies.Add(sacredCookie);
 

@@ -66,4 +66,11 @@ namespace _9th.Sacred.Objects.Data
             Errors = null;
         }
     }
+
+    public class CookieUser
+    {
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string UserToken { get; set; }
+    }
 }

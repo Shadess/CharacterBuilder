@@ -1,22 +1,25 @@
-﻿@model _9th.Sacred.WebApp.Models.UserModel
+﻿@*@model String*@
 @{
-    ViewBag.Title = Model.User.Username;
+    //ViewBag.Title = Model;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Content {
     <link href="~/Content/Page/Profile.css" type="text/css" rel="stylesheet" />
 }
 
-<div class="sacred-card profile-header">
-    <div class="profile-image">
-        <img src="@Model.GravatarLink()" />
-    </div>
-    <h2>@Model.User.Username</h2>
+<div ng-controller="ProfileController">
+    <div class="sacred-card profile-header">
+        <div class="profile-image">
+            <img src="{{User.ProfileImage}}" />
+        </div>
 
-    <div class="clear"></div>
+        <h2 ng-cloak>{{User.Username}}</h2>
+
+        <div class="clear"></div>
+    </div>
 </div>
 
-<div class="sacred-card character-container">
+@*<div class="sacred-card character-container">
     <a href="@Url.Action("CreateStart", "Character")" class="new-button js-new-character-button"><span class="glyphicon glyphicon-plus"></span></a>
     <h2 class="card-title">Characters</h2>
 </div>
@@ -37,9 +40,9 @@
             }
         </div>
     }
-</div>
+</div>*@
 
-@section scripts {
+@*@section scripts {
     <script type="text/javascript" src="~/Scripts/Sacred/ProfileScript.js"></script>
-}
+}*@
 

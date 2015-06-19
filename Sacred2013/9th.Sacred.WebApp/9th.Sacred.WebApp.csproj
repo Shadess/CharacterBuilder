@@ -117,8 +117,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Factories\" />
     <Folder Include="Scripts\Modules\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
@@ -129,6 +129,7 @@
     <Compile Include="Classes\SSConfiguration.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -228,6 +229,8 @@
     </Content>
     <Content Include="Content\_variables.scss" />
     <Content Include="Icon.png" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
@@ -241,7 +244,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\Controllers\ProfileController.js" />
+    <Content Include="Scripts\Factories\AuthHttpResponseInterceptor.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
@@ -293,6 +299,10 @@
     <ProjectReference Include="..\9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj">
       <Project>{69a7f868-1f00-4b3b-8ebe-53f9fd7c2320}</Project>
       <Name>9th.Sacred.ApiInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\9th.Sacred.Business\9th.Sacred.Business.csproj">
+      <Project>{761a6225-9fff-416e-a1cf-b0696ababc41}</Project>
+      <Name>9th.Sacred.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\9th.Sacred.Objects\9th.Sacred.Objects.csproj">
       <Project>{1789d41d-64d1-46d0-b7d4-8102d40995d4}</Project>

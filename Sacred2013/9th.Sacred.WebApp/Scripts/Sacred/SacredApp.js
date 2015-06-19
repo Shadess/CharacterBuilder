@@ -1,5 +1,12 @@
 ﻿(function () {
-    var app = angular.module('SacredApp', ['SacredHomeApp']);
+    var app = angular.module('SacredApp', ['ngCookies']).config(function ($locationProvider, $httpProvider) {
+        $locationProvider.html5Mode(true);
+        $httpProvider.interceptors.push('AuthHttpResponseInterceptor');
+    });
 
-    app.controller('LoginController', ['$scope', '$http', '$window', LoginController]);
+    // Controllers
+    app.controller('ProfileController', ProfileController);
+
+    // Factories
+    app.factory('AuthHttpResponseInterceptor', AuthHttpResponseInterceptor);
 })();

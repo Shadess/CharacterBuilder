@@ -1,19 +1,17 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="SacredApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sacred System is a fantasy pen and paper role playing game." />
 
     <title>@ViewBag.Title - Sacred System</title>
+    <base href="/">
+
     @Styles.Render("~/Content/css")
     @RenderSection("Content", required: false)
 
-    <script type="text/javascript">
-        site_domain = '@Request.Url.Authority';
-        site_baseurl = '@Url.Content("~")';
-        api_baseurl = '@System.Configuration.ConfigurationManager.AppSettings["SacredApiUrl"]';
-    </script>
+    @Scripts.Render("~/bundles/headerscripts")
 </head>
 
 <body>
@@ -28,10 +26,11 @@
             <div class="nav-login">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    HttpCookie cookie = Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_];
-                    string UserId = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_ID_);
-                    string Username = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_NAME_);
-                    @Html.ActionLink(Username, "Profile", "User", new { id = UserId }, new { @class = "user-home-button" });
+                    //HttpCookie cookie = Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_];
+                    //string UserId = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_ID_);
+                    //string Username = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_NAME_);
+                    _9th.Sacred.Objects.Data.CookieUser cUser = Newtonsoft.Json.JsonConvert.DeserializeObject<_9th.Sacred.Objects.Data.CookieUser>(Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_].Value);
+                    @Html.ActionLink(cUser.UserName, "Profile", "User", new { id = cUser.UserId }, new { @class = "user-home-button" });
                     @Html.Raw(" | ");
                     @Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "logout-button" });
                 }
@@ -75,6 +74,15 @@
     </footer>
 
     @Scripts.Render("~/bundles/scripts")
+    <script type="text/javascript">
+        site_domain = '@Request.Url.Authority';
+        site_baseurl = '@Url.Content("~")';
+        api_baseurl = '@System.Configuration.ConfigurationManager.AppSettings["SacredApiUrl"]';
+
+        SITE_URL = '@Url.Content("~")';
+        API_URL = '@System.Configuration.ConfigurationManager.AppSettings["SacredApiUrl"]';
+        SACRED_COOKIE = '@_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_';
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

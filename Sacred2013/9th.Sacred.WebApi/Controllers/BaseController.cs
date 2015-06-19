@@ -30,8 +30,6 @@ namespace _9th.Sacred.WebApi.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
-
-            //_myuser = MyUserService.GetUserFromUserToken(usertoken);
         }
 
         #region Service Initialization
