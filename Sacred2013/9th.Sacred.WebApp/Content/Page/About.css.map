@@ -1,10 +1,1 @@
-{
-  "version": 3,
-  "file": "About.css",
-  "sources": [
-    "About.scss",
-    "../_variables.scss"
-  ],
-  "names": [],
-  "mappings": ";;AAGA;EACI,OAAO;EACP,OAAO"
-}
+﻿{"version":3,"file":"About.css","sources":["About.scss","../_variables.scss"],"sourcesContent":[],"mappings":"AAGA,AACI,AAAO,AACP,AAAO","names":[]}

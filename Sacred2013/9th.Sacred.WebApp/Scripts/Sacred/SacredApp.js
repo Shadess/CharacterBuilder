@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('SacredApp', ['ngCookies']).config(function ($locationProvider, $httpProvider) {
+    var app = angular.module('SacredApp', ['ngCookies', 'SacredAdmin']).config(function ($locationProvider, $httpProvider) {
         $locationProvider.html5Mode(true);
         $httpProvider.interceptors.push('AuthHttpResponseInterceptor');
     });

@@ -16,6 +16,7 @@ namespace _9th.Sacred.Objects.Data
         public byte[] Salt { get; set; }
         public bool Verified { get; set; }
         public DateTime SignUpDate { get; set; }
+        public bool IsAdmin { get; set; }
 
         public User()
         {

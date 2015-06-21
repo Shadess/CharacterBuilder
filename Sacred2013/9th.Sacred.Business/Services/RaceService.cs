@@ -23,5 +23,11 @@ namespace _9th.Sacred.Business.Services
 
             return races;
         }
+
+        public void AddRace(Race newRace)
+        {
+            RacesData raceData = new RacesData(CurrentDataContext);
+            raceData.AddRace(newRace);
+        }
     }
 }

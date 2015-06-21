@@ -1,4 +1,5 @@
 ﻿using _9th.Sacred.Objects.Data;
+using _9th.Sacred.Objects.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,13 @@ namespace _9th.Sacred.WebApi.Controllers
         {
             AuthenticateUserToken(userToken);
             return MyRaceService.GetAll();
+        }
+
+        [HttpPost]
+        public void AddRace(RaceRequest request)
+        {
+            AuthenticateUserToken(request.UserToken);
+            MyRaceService.AddRace(request.Race);
         }
     }
 }

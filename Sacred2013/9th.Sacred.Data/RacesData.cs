@@ -25,6 +25,13 @@ namespace _9th.Sacred.Data
             WHERE ACTIVE = 1 and p.CATEGORY = 1 AND pm.CATEGORY = 1
         ";
 
+        private const string SQL_ADD_RACE = @"
+            INSERT INTO RACES
+            (NAME, COMMONNAME, LIFESPAN, HEIGHT, ORIGIN, SOCIALSTATUS, FLAVORTEXT, DESCRIPTION)
+            VALUES
+            (@NAME, @COMMONNAME, @LIFESPAN, @HEIGHT, @ORIGIN, @SOCIALSTATUS, @FLAVORTEXT, @DESCRIPTION)
+        ";
+
         #endregion
 
 
@@ -56,6 +63,15 @@ namespace _9th.Sacred.Data
             }
 
             return races;
+        }
+
+        public void AddRace(Race newRace)
+        {
+            using (SqlCommand cmd = new SqlCommand(SQL_ADD_RACE))
+            {
+                LoadParameters(cmd, newRace);
+                ExecuteSqlNonQuery(cmd);
+            }
         }
 
 

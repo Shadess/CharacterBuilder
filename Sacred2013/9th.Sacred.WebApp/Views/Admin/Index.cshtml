@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+@section Content {
+    <link href="~/Content/Admin/Admin.css" type="text/css" rel="stylesheet" />
+}
+
+<div ng-app="AdminApp">
+    <h2>Admin Panel</h2>
+
+    <div ng-controller="AdminRaceController" ng-cloak>
+        <h3>Add Race</h3>
+
+        <form role="form" ng-submit="AddRace()">
+            <div class="alert alert-success alert-dismissable" role="alert" ng-show="ShowRaceSuccess">
+                Success
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="Race.Name" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Common Name</label>
+                <input type="text" class="form-control" ng-model="Race.CommonName" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Lifespan</label>
+                <input type="text" class="form-control" ng-model="Race.Lifespan" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Height</label>
+                <input type="text" class="form-control" ng-model="Race.Height" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Origin</label>
+                <select class="form-control" ng-model="Race.Origin">
+                    <option ng-repeat="originChoice in OriginChoices">{{originChoice}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Social Status</label>
+                <select class="form-control" ng-model="Race.SocialStatus">
+                    <option ng-repeat="choice in SocialStatusChoices">{{choice}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <label>Flavor Text</label>
+                <textarea maxlength="250" class="form-control" ng-model="Race.FlavorText"></textarea>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <label>Description</label>
+                <textarea class="form-control" ng-model="Race.Description"></textarea>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <input type="submit" value="Add" class="btn btn-primary pull-right" />
+            </div>
+
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>

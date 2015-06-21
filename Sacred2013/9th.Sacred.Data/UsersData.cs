@@ -143,6 +143,7 @@ namespace _9th.Sacred.Data
             newUser.Salt = (row["SALT"] == DBNull.Value) ? null : (byte[])row["SALT"];
             newUser.Verified = (row["VERIFIED"] == DBNull.Value) ? false : Convert.ToBoolean(row["VERIFIED"]);
             newUser.SignUpDate = (row["SIGNUPDATE"] == DBNull.Value) ? DateTime.MinValue : Convert.ToDateTime(row["SIGNUPDATE"]);
+            newUser.IsAdmin = (row["ISADMIN"] == DBNull.Value) ? false : Convert.ToBoolean(row["ISADMIN"]);
 
             return newUser;
         }

@@ -26,9 +26,6 @@
             <div class="nav-login">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    //HttpCookie cookie = Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_];
-                    //string UserId = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_ID_);
-                    //string Username = cookie.Values.Get(_9th.Sacred.WebApp.Classes.Constants._COOKIE_USER_NAME_);
                     _9th.Sacred.Objects.Data.CookieUser cUser = Newtonsoft.Json.JsonConvert.DeserializeObject<_9th.Sacred.Objects.Data.CookieUser>(Request.Cookies[_9th.Sacred.WebApp.Classes.Constants._COOKIE_NAME_].Value);
                     @Html.ActionLink(cUser.UserName, "Profile", "User", new { id = cUser.UserId }, new { @class = "user-home-button" });
                     @Html.Raw(" | ");

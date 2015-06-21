@@ -19,6 +19,7 @@ namespace _9th.Sacred.WebApp
                         "~/Scripts/sacred.core.js",
                         "~/Scripts/Factories/*.js",
                         "~/Scripts/Controllers/*.js",
+                        "~/Scripts/Modules/*.js",
                         "~/Scripts/Sacred/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

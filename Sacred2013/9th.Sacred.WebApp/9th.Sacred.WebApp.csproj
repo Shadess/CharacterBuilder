@@ -117,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Modules\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +128,7 @@
     <Compile Include="Classes\SSConfiguration.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
@@ -149,6 +149,12 @@
     </Content>
     <Content Include="Content\9th.Sacred.min.css">
       <DependentUpon>9th.Sacred.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Admin\Admin.css">
+      <DependentUpon>Admin.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Admin\Admin.min.css">
+      <DependentUpon>Admin.css</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -244,10 +250,15 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\Controllers\AdminRaceController.js" />
     <Content Include="Scripts\Controllers\ProfileController.js" />
     <Content Include="Scripts\Factories\AuthHttpResponseInterceptor.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Content\Admin\Admin.scss" />
+    <Content Include="Content\Admin\Admin.css.map">
+      <DependentUpon>Admin.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
@@ -257,6 +268,7 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Modules\AdminApp.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -294,6 +306,7 @@
     <Content Include="Views\Shared\Character\_ChooseRace.cshtml" />
     <Content Include="Views\Shared\Character\_ChooseClass.cshtml" />
     <Content Include="Views\Shared\Character\_HeroicAwakening.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj">

@@ -194,5 +194,23 @@ namespace _9th.Sacred.Business.Services
 
             return ReadUserById(id);
         }
+
+        public bool ValidateUserAdmin(string userToken)
+        {
+            bool userTokenIsAdmin = false;
+
+            UserTokensData tokenData = new UserTokensData(CurrentDataContext);
+            int id = tokenData.GetUserIdFromToken(userToken);
+
+            if (id > 0)
+            {
+                // User exists now check admin privileges
+                UsersData usersData = new UsersData(CurrentDataContext);
+                User user = usersData.ReadUserById(id);
+                userTokenIsAdmin = user.IsAdmin;
+            }
+
+            return userTokenIsAdmin;
+        }
     }
 }
