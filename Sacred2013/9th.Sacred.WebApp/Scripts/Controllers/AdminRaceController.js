@@ -16,31 +16,63 @@
 
 
     // VARIABLES
+    $scope.userCookie = $cookies.getObject(SACRED_COOKIE);
+    $scope.ButtonText = "Add";
+
     $scope.Race = $scope.GetBlankRace();
     $scope.ShowRaceSuccess = false;
+    $scope.RaceList = [];
+    $scope.RacesLoading = true;
 
     $scope.OriginChoices = ['Human', 'Fey', 'Fey/Human', 'Kar'];
     $scope.SocialStatusChoices = ['Very High', 'High', 'Medium', 'Low', 'Very Low', 'Extremely Low'];
 
 
+    // INIT WEB CALLS
+    var apiURL = $window.API_URL + "Race/GetAll?userToken=" + $scope.userCookie.UserToken;
+    $http.get(apiURL).success(function (data) {
+        $scope.RaceList = data;
+        $scope.RacesLoading = false;
+    });
+
+
     // FUNCTIONS
     $scope.AddRace = function () {
-        var userCookie = $cookies.getObject(SACRED_COOKIE);
         var apiUrl = $window.API_URL + "Race/AddRace";
+        if ($scope.ButtonText === "Edit") {
+            apiUrl = $window.API_URL + "Race/EditRace";
+        }
+
         var data = {
-            UserToken: userCookie.UserToken,
+            UserToken: $scope.userCookie.UserToken,
             Race: $scope.Race
         }
 
         $http.post(apiUrl, data).success(function (data) {
             $scope.ShowRaceSuccess = true;
-            $scope.Race = $scope.GetBlankRace();
+
+            if ($scope.ButtonText === "Add") {
+                $scope.Race.Id = data;
+                $scope.RaceList.push($scope.Race);
+                $scope.Race = $scope.GetBlankRace();
+            }
 
             // Auto hide success alert
             $timeout(function () {
                 $scope.ShowRaceSuccess = false;
             }, 2000);
         });
+    };
+
+    $scope.SelectRace = function (race) {
+        $scope.Race = race;
+
+        if (race.Id > 0) {
+            $scope.ButtonText = "Edit";
+        }
+        else {
+            $scope.ButtonText = "Add";
+        }
     };
 };
 

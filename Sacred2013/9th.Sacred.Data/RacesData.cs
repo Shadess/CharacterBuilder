@@ -20,16 +20,30 @@ namespace _9th.Sacred.Data
 
         private const string SQL_GET_ALL_RACES = @"
             SELECT * FROM RACES
-            SELECT * FROM POWERS p
-	            INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
-            WHERE ACTIVE = 1 and p.CATEGORY = 1 AND pm.CATEGORY = 1
         ";
+        //SELECT * FROM POWERS p
+        //        INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
+        //    WHERE ACTIVE = 1 and p.CATEGORY = 1 AND pm.CATEGORY = 1
 
         private const string SQL_ADD_RACE = @"
             INSERT INTO RACES
             (NAME, COMMONNAME, LIFESPAN, HEIGHT, ORIGIN, SOCIALSTATUS, FLAVORTEXT, DESCRIPTION)
             VALUES
-            (@NAME, @COMMONNAME, @LIFESPAN, @HEIGHT, @ORIGIN, @SOCIALSTATUS, @FLAVORTEXT, @DESCRIPTION)
+            (@NAME, @COMMONNAME, @LIFESPAN, @HEIGHT, @ORIGIN, @SOCIALSTATUS, @FLAVORTEXT, @DESCRIPTION);
+            SELECT CONVERT(int, SCOPE_IDENTITY());
+        ";
+
+        private const string SQL_UPDATE_RACE = @"
+            UPDATE RACES
+            SET NAME = @NAME,
+                COMMONNAME = @COMMONNAME,
+                LIFESPAN = @LIFESPAN,
+                HEIGHT = @HEIGHT,
+                ORIGIN = @ORIGIN,
+                SOCIALSTATUS = @SOCIALSTATUS,
+                FLAVORTEXT = @FLAVORTEXT,
+                DESCRIPTION = @DESCRIPTION
+            WHERE ID = @ID
         ";
 
         #endregion
@@ -45,18 +59,19 @@ namespace _9th.Sacred.Data
                 data = ExecuteSqlQuery(cmd);
             }
 
-            if (!DataSetIsEmpty(data) && data.Tables.Count == 2 && data.Tables[1].Rows.Count > 0)
+            //if (!DataSetIsEmpty(data) && data.Tables.Count == 2 && data.Tables[1].Rows.Count > 0)
+            if (!DataSetIsEmpty(data))
             {
-                DataTable powerTable = data.Tables[1];
+                //DataTable powerTable = data.Tables[1];
 
                 foreach (DataRow row in data.Tables[0].Rows)
                 {
                     Race newRace = RacesData.CreateObjectFromDataRow(row);
 
-                    foreach (DataRow powerRow in powerTable.Select("OBJECTID = " + newRace.Id))
-                    {
-                        newRace.Powers.Add(PowersData.CreateObjectFromDataRow(powerRow));
-                    }
+                    //foreach (DataRow powerRow in powerTable.Select("OBJECTID = " + newRace.Id))
+                    //{
+                    //    newRace.Powers.Add(PowersData.CreateObjectFromDataRow(powerRow));
+                    //}
 
                     races.Add(newRace);
                 }
@@ -65,11 +80,24 @@ namespace _9th.Sacred.Data
             return races;
         }
 
-        public void AddRace(Race newRace)
+        public int AddRace(Race newRace)
         {
+            int id = 0;
+
             using (SqlCommand cmd = new SqlCommand(SQL_ADD_RACE))
             {
                 LoadParameters(cmd, newRace);
+                id = (int)ExecuteScalarQuery(cmd);
+            }
+
+            return id;
+        }
+
+        public void UpdateRace(Race race)
+        {
+            using (SqlCommand cmd = new SqlCommand(SQL_UPDATE_RACE))
+            {
+                LoadParameters(cmd, race);
                 ExecuteSqlNonQuery(cmd);
             }
         }

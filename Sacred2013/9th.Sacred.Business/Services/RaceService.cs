@@ -24,10 +24,16 @@ namespace _9th.Sacred.Business.Services
             return races;
         }
 
-        public void AddRace(Race newRace)
+        public int AddRace(Race newRace)
         {
             RacesData raceData = new RacesData(CurrentDataContext);
-            raceData.AddRace(newRace);
+            return raceData.AddRace(newRace);
+        }
+
+        public void EditRace(Race race)
+        {
+            RacesData raceData = new RacesData(CurrentDataContext);
+            raceData.UpdateRace(race);
         }
     }
 }
