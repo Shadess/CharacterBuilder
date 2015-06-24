@@ -19,5 +19,23 @@ namespace _9th.Sacred.Business.Services
             ClassesData cData = new ClassesData(CurrentDataContext);
             return cData.GetAll();
         }
+
+        public int AddClass(Class newClass)
+        {
+            ClassesData classData = new ClassesData(CurrentDataContext);
+            return classData.AddClass(newClass);
+        }
+
+        public void EditClass(Class editClass)
+        {
+            ClassesData classData = new ClassesData(CurrentDataContext);
+            classData.UpdateClass(editClass);
+        }
+
+        public void DeleteClassById(int id)
+        {
+            ClassesData classData = new ClassesData(CurrentDataContext);
+            classData.DeleteClass(id);
+        }
     }
 }

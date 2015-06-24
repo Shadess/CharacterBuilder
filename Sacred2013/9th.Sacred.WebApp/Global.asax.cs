@@ -21,7 +21,8 @@ namespace _9th.Sacred.WebApp
             {
                 PartialViewLocationFormats = new string[]
                 {
-                    "~/Views/Shared/Character/{0}.cshtml"
+                    "~/Views/Shared/Character/{0}.cshtml",
+                    "~/Views/Admin/Partials/{0}.cshtml"
                 }
             });
         }

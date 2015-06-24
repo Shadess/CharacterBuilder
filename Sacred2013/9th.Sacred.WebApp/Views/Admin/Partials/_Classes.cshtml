@@ -1,0 +1,46 @@
+﻿<h3>Classes</h3>
+
+<div class="container-fluid">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-group-vertical">
+        <button type="button" class="btn btn-primary" ng-click="SelectClass(GetBlankClass())">Create</button>
+        <button type="button" class="btn btn-default" ng-repeat="class in ClassList" ng-click="SelectClass(class)" ng-class="{active: isSelected(class.Id)}">{{class.Name}}</button>
+    </div>
+
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <form role="form" ng-submit="AddClass()">
+            <div class="alert alert-success alert-dismissable" role="alert" ng-show="ShowClassSuccess">
+                Success
+            </div>
+
+            <div class="form-group col-lg-6 col-md-6">
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="Class.Name" />
+            </div>
+
+            <div class="form-group col-lg-6 col-md-6">
+                <label>Role</label>
+                <input type="text" class="form-control" ng-model="Class.Role" />
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <label>Flavor Text</label>
+                <textarea maxlength="250" class="form-control" ng-model="Class.FlavorText"></textarea>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <label>Description</label>
+                <textarea class="form-control" rows="5" ng-model="Class.Description"></textarea>
+            </div>
+
+            <div class="form-group col-lg-1 col-md-1 pull-left">
+                <input type="button" value="Delete" class="btn btn-danger pull-left" ng-show="showDeleteButton()" ng-click="deleteClass()" />
+            </div>
+
+            <div class="form-group col-lg-1 col-md-1 pull-right">
+                <input type="submit" value="{{ButtonText}}" class="btn btn-primary pull-right" ng-disabled="ClassesLoading" />
+            </div>
+
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>

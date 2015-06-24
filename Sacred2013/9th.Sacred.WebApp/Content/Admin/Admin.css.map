@@ -1,1 +1,1 @@
-﻿{"version":3,"file":"Admin.css","sources":["Admin.scss"],"sourcesContent":[],"mappings":"","names":[]}
+﻿{"version":3,"file":"Admin.css","sources":["Admin.scss","_variables.scss"],"sourcesContent":[],"mappings":"AAEA,AACI,AAAQ,AAAZ,AAAiB,AAGT,AAAS,AAAjB,AAAiB,AAAM,AAGX,ACRQ,ADSR,ACJC,ADKD,AAAa,AAAzB,AAAiB,AAAM,AAAS,AAGhB,ACZS","names":[]}

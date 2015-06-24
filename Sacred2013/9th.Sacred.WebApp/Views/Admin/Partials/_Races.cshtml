@@ -1,0 +1,70 @@
+﻿<h3>Races</h3>
+
+<div class="container-fluid">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-group-vertical">
+        <button type="button" class="btn btn-primary" ng-click="SelectRace(GetBlankRace())">Create</button>
+        <button type="button" class="btn btn-default" ng-repeat="race in RaceList" ng-click="SelectRace(race)" ng-class="{active: isSelected(race.Id)}">{{race.Name}}</button>
+    </div>
+
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <form role="form" ng-submit="AddRace()">
+            <div class="alert alert-success alert-dismissable" role="alert" ng-show="ShowRaceSuccess">
+                Success
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="Race.Name" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Common Name</label>
+                <input type="text" class="form-control" ng-model="Race.CommonName" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Lifespan</label>
+                <input type="text" class="form-control" ng-model="Race.Lifespan" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Height</label>
+                <input type="text" class="form-control" ng-model="Race.Height" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Origin</label>
+                <select class="form-control" ng-model="Race.Origin">
+                    <option ng-repeat="originChoice in OriginChoices">{{originChoice}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-lg-4 col-md-4">
+                <label>Social Status</label>
+                <select class="form-control" ng-model="Race.SocialStatus">
+                    <option ng-repeat="choice in SocialStatusChoices">{{choice}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <label>Flavor Text</label>
+                <textarea maxlength="250" class="form-control" ng-model="Race.FlavorText"></textarea>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <label>Description</label>
+                <textarea class="form-control" rows="5" ng-model="Race.Description"></textarea>
+            </div>
+
+            <div class="form-group col-lg-1 col-md-1 pull-left">
+                <input type="button" value="Delete" class="btn btn-danger pull-left" ng-show="showDeleteButton()" ng-click="deleteRace()" />
+            </div>
+
+            <div class="form-group col-lg-1 col-md-1 pull-right">
+                <input type="submit" value="{{ButtonText}}" class="btn btn-primary pull-right" ng-disabled="RacesLoading" />
+            </div>
+
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>

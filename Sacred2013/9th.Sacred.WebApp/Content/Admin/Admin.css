@@ -1,2 +1,12 @@
-﻿
+﻿.admin-panel-nav {
+  margin: 12px 0; }
+  .admin-panel-nav button {
+    padding: 6px 20px; }
+    .admin-panel-nav button.selected {
+      background-color: #337ab7;
+      color: rgba(255, 255, 255, 0.87);
+      text-shadow: 0 1px 0 #286090; }
+      .admin-panel-nav button.selected:hover {
+        background-color: #286090; }
+
 /*# sourceMappingURL=Admin.css.map */

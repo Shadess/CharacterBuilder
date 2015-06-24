@@ -46,6 +46,8 @@ namespace _9th.Sacred.Data
             WHERE ID = @ID
         ";
 
+        private const string SQL_DELETE_RACE = @"DELETE FROM RACES WHERE ID = @ID";
+
         #endregion
 
 
@@ -99,6 +101,15 @@ namespace _9th.Sacred.Data
             {
                 LoadParameters(cmd, race);
                 ExecuteSqlNonQuery(cmd);
+            }
+        }
+
+        public void DeleteRaceById(int id)
+        {
+            using (SqlCommand command = new SqlCommand(SQL_DELETE_RACE))
+            {
+                command.Parameters.AddWithValue("@ID", id);
+                ExecuteSqlNonQuery(command);
             }
         }
 

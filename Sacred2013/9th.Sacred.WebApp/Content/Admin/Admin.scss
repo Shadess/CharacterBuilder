@@ -1,1 +1,19 @@
-﻿
+﻿@import "variables";
+
+.admin-panel-nav {
+    margin: 12px 0;
+
+    button {
+        padding: 6px 20px;
+
+        &.selected {
+            background-color: $primary-highlight;
+            color: $light-text;
+            text-shadow: 0 1px 0 $primary-highlight-dark;
+
+            &:hover {
+                background-color: $primary-highlight-dark;
+            }
+        }
+    }
+}

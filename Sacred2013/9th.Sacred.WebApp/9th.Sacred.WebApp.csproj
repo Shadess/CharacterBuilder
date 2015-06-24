@@ -250,6 +250,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\Controllers\AdminClassController.js" />
+    <Content Include="Scripts\Controllers\AdminController.js" />
     <Content Include="Scripts\Controllers\AdminRaceController.js" />
     <Content Include="Scripts\Controllers\ProfileController.js" />
     <Content Include="Scripts\Factories\AuthHttpResponseInterceptor.js" />
@@ -259,6 +261,7 @@
     <Content Include="Content\Admin\Admin.css.map">
       <DependentUpon>Admin.css</DependentUpon>
     </Content>
+    <Content Include="Content\Admin\_variables.scss" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
@@ -307,6 +310,8 @@
     <Content Include="Views\Shared\Character\_ChooseClass.cshtml" />
     <Content Include="Views\Shared\Character\_HeroicAwakening.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Partials\_Races.cshtml" />
+    <Content Include="Views\Admin\Partials\_Classes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj">

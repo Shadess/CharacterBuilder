@@ -50,6 +50,7 @@
     <Compile Include="Data\User.cs" />
     <Compile Include="Data\UserToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\ClassRequest.cs" />
     <Compile Include="Requests\RaceRequest.cs" />
     <Compile Include="Requests\CampaignRequest.cs" />
     <Compile Include="Responses\CampaignResponse.cs" />

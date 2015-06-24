@@ -18,6 +18,7 @@
     // VARIABLES
     $scope.userCookie = $cookies.getObject(SACRED_COOKIE);
     $scope.ButtonText = "Add";
+    $scope.RaceTab = 0;
 
     $scope.Race = $scope.GetBlankRace();
     $scope.ShowRaceSuccess = false;
@@ -66,6 +67,7 @@
 
     $scope.SelectRace = function (race) {
         $scope.Race = race;
+        $scope.RaceTab = race.Id;
 
         if (race.Id > 0) {
             $scope.ButtonText = "Edit";
@@ -73,6 +75,23 @@
         else {
             $scope.ButtonText = "Add";
         }
+    };
+
+    $scope.isSelected = function (value) {
+        return $scope.RaceTab === value;
+    };
+
+    $scope.showDeleteButton = function () {
+        return $scope.Race.Id > 0;
+    };
+
+    $scope.deleteRace = function () {
+        var apiUrl = $window.API_URL + "Race/DeleteRaceById?userToken=" + $scope.userCookie.UserToken + "&id=" + $scope.Race.Id;
+        $http.get(apiUrl).success(function (data) {
+            // Handle delete
+            $scope.RaceList.splice($scope.RaceList.indexOf($scope.Race), 1);
+            $scope.SelectRace($scope.GetBlankRace());
+        });
     };
 };
 

@@ -30,6 +30,25 @@ namespace _9th.Sacred.Data
             WHERE p.ACTIVE = 1 AND p.CATEGORY = 2 AND pm.CATEGORY = 2
         ";
 
+        private const string SQL_ADD_CLASS = @"
+            INSERT INTO CLASSES
+            (NAME, ROLE, FLAVORTEXT, DESCRIPTION)
+            VALUES
+            (@NAME, @ROLE, @FLAVORTEXT, @DESCRIPTION);
+            SELECT CONVERT(int, SCOPE_IDENTITY());
+        ";
+
+        private const string SQL_UPDATE_CLASS = @"
+            UPDATE CLASSES
+            SET NAME = @NAME,
+                ROLE = @ROLE,
+                FLAVORTEXT = @FLAVORTEXT,
+                DESCRIPTION = @DESCRIPTION
+            WHERE ID = @ID
+        ";
+
+        private const string SQL_DELETE_CLASS = @"DELETE FROM CLASSES WHERE ID = @ID";
+
         #endregion
 
 
@@ -75,6 +94,37 @@ namespace _9th.Sacred.Data
             }
 
             return classes;
+        }
+
+        public int AddClass(Class newClass)
+        {
+            int id = 0;
+
+            using (SqlCommand cmd = new SqlCommand(SQL_ADD_CLASS))
+            {
+                LoadParameters(cmd, newClass);
+                id = (int)ExecuteScalarQuery(cmd);
+            }
+
+            return id;
+        }
+
+        public void UpdateClass(Class editClass)
+        {
+            using (SqlCommand cmd = new SqlCommand(SQL_UPDATE_CLASS))
+            {
+                LoadParameters(cmd, editClass);
+                ExecuteSqlNonQuery(cmd);
+            }
+        }
+
+        public void DeleteClass(int id)
+        {
+            using (SqlCommand command = new SqlCommand(SQL_DELETE_CLASS))
+            {
+                command.Parameters.AddWithValue("@ID", id);
+                ExecuteSqlNonQuery(command);
+            }
         }
 
 

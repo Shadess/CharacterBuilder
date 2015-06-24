@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace _9th.Sacred.WebApi.Controllers
 {
@@ -29,6 +29,13 @@ namespace _9th.Sacred.WebApi.Controllers
         {
             AuthenticateUserToken(request.UserToken);
             MyRaceService.EditRace(request.Race);
+        }
+
+        [HttpGet]
+        public void DeleteRaceById(string userToken, int id)
+        {
+            AuthenticateUserToken(userToken);
+            MyRaceService.DeleteClassById(id);
         }
     }
 }

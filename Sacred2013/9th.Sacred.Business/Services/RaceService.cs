@@ -35,5 +35,11 @@ namespace _9th.Sacred.Business.Services
             RacesData raceData = new RacesData(CurrentDataContext);
             raceData.UpdateRace(race);
         }
+
+        public void DeleteClassById(int id)
+        {
+            RacesData raceData = new RacesData(CurrentDataContext);
+            raceData.DeleteRaceById(id);
+        }
     }
 }
