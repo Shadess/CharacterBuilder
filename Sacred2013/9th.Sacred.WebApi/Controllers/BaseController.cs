@@ -104,6 +104,20 @@ namespace _9th.Sacred.WebApi.Controllers
             }
         }
 
+        private PowerService _powerService;
+        public PowerService MyPowerService
+        {
+            get
+            {
+                if (_powerService == null)
+                {
+                    _powerService = new PowerService(ConnectionString);
+                }
+
+                return _powerService;
+            }
+        }
+
         #endregion
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Services\CampaignService.cs" />
     <Compile Include="Services\ClassService.cs" />
     <Compile Include="Services\HeroicService.cs" />
+    <Compile Include="Services\PowerService.cs" />
     <Compile Include="Services\RaceService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>

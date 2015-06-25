@@ -18,9 +18,42 @@ namespace _9th.Sacred.Data
 
         #region Sql Strings
 
-
+        private const string SQL_GET_ALL = @"
+            SELECT * FROM POWERS
+            SELECT * FROM POWERSMAP
+        ";
 
         #endregion
+
+        public List<Power> GetAll()
+        {
+            DataSet data = new DataSet();
+            List<Power> powers = new List<Power>();
+
+            using (SqlCommand command = new SqlCommand(SQL_GET_ALL))
+            {
+                data = ExecuteSqlQuery(command);
+            }
+
+            if (!DataSetIsEmpty(data) && data.Tables.Count > 1)
+            {
+                DataTable powerMapTable = data.Tables[1];
+
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Power power = PowersData.CreateObjectFromDataRow(row);
+
+                    foreach (DataRow mapRow in powerMapTable.Select("POWERID_FK = " + power.Id))
+                    {
+                        power.CategoryMapIds.Add(Convert.ToInt32(mapRow["CATEGORYOBJECTID"]));
+                    }
+
+                    powers.Add(power);
+                }
+            }
+
+            return powers;
+        }
 
 
         //--------------------------------------------------

@@ -45,7 +45,6 @@ BEGIN
 END
 GO
 
-
 /* CLASSES */
 IF NOT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'CLASSES')
 BEGIN
@@ -60,6 +59,38 @@ BEGIN
 END
 GO
 
+/* POWERS */
+IF NOT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'POWERS')
+BEGIN
+	CREATE TABLE POWERS
+	(
+		ID int IDENTITY(1,1) PRIMARY KEY,
+		NAME nvarchar(100) NOT NULL,
+		CATEGORY int NOT NULL,
+		POWERTYPE int NOT NULL,
+		ACTIONTYPE int,
+		EFFECTTYPE int,
+		RANGE int,
+		AURARANGE int,
+		DESCRIPTION nvarchar(MAX),
+		TIER int NOT NULL,
+		ACTIVE bit NOT NULL
+	);
+END
+GO
+
+/* POWERS MAP */
+IF NOT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'POWERSMAP')
+BEGIN
+	CREATE TABLE POWERSMAP
+	(
+		CATEGORYOBJECTID int NOT NULL,
+		POWERID_FK int NOT NULL FOREIGN KEY REFERENCES POWERS(ID)
+	);
+END
+GO
+
+
 
 --IF NOT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'CAMPAIGNS')
 --BEGIN
@@ -73,75 +104,7 @@ GO
 --END
 --GO
 
---IF NOT EXISTS (SELECT 1 FROM CLASSES)
---BEGIN
---	INSERT INTO CLASSES (NAME, ROLE, FLAVORTEXT, DESCRIPTION)
---	VALUES 
---	('Agent', 'Utility', 'I''ve got a plan for every scenario, a tool for every situation.', 'When force of might may fail, cunning and subterfuge can succeed. Whether it be breaking into an impenetrable fortress or escaping from a hopeless fight the agent provides the tools and skills necessary to perform these seemingly impossible feats. 
 
---The Agent class provides the most utility of all the classes by offering a vast amount of options of getting in and out of a situation. Whether they’re facing solid stone or an army of watchful guards, the agent provides your group the option to avoid pointless combat encounters or to escape unfavorable situations. While not providing much in a pitched battle itself, his skills can save your group time and energy much better spent elsewhere. In battle the agent will focus on disabling his enemies, allowing others to finish  the job.
-
---Focusing fully down the Agent skill tree will allow you and your group an option for nearly all situations. Others may consider multiclassing into the Agent class if they are looking for some non combat utility.'),
---	('Assassin', 'Single Target Damage', 'He has studied his target. He knows his moves, his ways, and his skills. There will be no escape. No one has ever escaped.', 'Nameless yet feared, you are known not by face but by the deeds you have performed. Countless victims you leave in your wake yet not one left alive to recall the story. Striking from the shadows you eliminate your foes before they have a chance to act. 
-
---The Assassin class specializes in single target damage, eliminating single foes with ruthless efficiency. Utilizing a vast array of mobility and invisibility the Assassin can gain advantage over its opponents and eliminates by eliminating the targets who are hard to reach or vulnerable.
-
---The assassin works best when working with your group to gain proper positioning to deal your most devastating attacks and to provide protection. Use your abilities to strike and escape before you gain the attention of the enemy.
-
---Excellent damage class
---Specializes in single target damage
---Small weapon specialist
---Also adds excellent mobility and survivability. 
---Many abilities grant invisibility.'),
---	('Bard', 'Support, Crowd Control', 'Music invigorates the spirit, strengthens the wavering man, and incites him to great and worthy deeds.', 'At the sound of your music the ebb and flow of battle are wrought. You have the power to turn chaos into order through your melodious hymn or turn order into chaos at the stroke of your chord. 
-
---Through the power of your songcraft, the bard is capable of supporting and strengthening their allies by a variety of musical tunes. Or you can turn your music upon your enemies to disrupt them and weaken them greatly in the battle or even take them out of the fight completely. In and out of battle your group will find your music and abilities a great boon for many situations.
-
---You rely greatly upon your allies though as your are vulnerable to attack but should your allies keep you protected they will find you a huge asset and capable of swinging a battle in one direction or the other.'),
---	('Fighter', 'Damage, Tank', 'He cut through our lines effortlessly. There was no spear or arrow that could bring him down. It was as if he was immortal.', 'Stories and songs are written about your great deeds. Your ferocity and strength can direct the flow of battle and drive enemies into retreat. Wherever the thickest part of the battle can be found, so can you.
-
---The fighter is a master of combat, capable of leaping into the fray and surviving to dish out a large amount of damage to all those around him with your high damaging weapons. While not the most proficient, you are also capable of tanking when necessary to protect your allies. The fighter class offers the options to fight longer and harder than most classes.
-
---As a fighter your playstyle will be based around getting into the thick of a fight and using your abilities to damage as many enemies at a time. From time to time you may also assist in protecting the weaker members of your party with your taunt but do not be mistaken as your survivability is the least out of the tank classes.'),
---	('General', 'Damage, Tank', 'Those who are victorious plan effectively and change decisively.', 'The battle unfolds under your fingertips as the pieces move around much like those of a game of chess. Alone your pieces are weak and vulnerable but together they can be greater than their individual selves. You will find victory within your grasp at the unfolding of your grand designs.
-
---As a general you have many abilities which may impact the game board through the use of your allies. You may command your allies to make extra movement or grant additional attacks actions. Use these to better position your allies to take advantage of the enemies openings.
-
---Furthermore the general may enter battle with various soldiers under your command to supplement your team in a variety of ways. A general will find themselves much appreciated by any team.'),
---	('Guardian', 'Damage, Tank, Support', 'My steel unbendable. My will unbreakable.', 'You are the pillar upon which the group stands for around you the many wonders and skills of the group may flourish but without you they crumble into nothingness. 
-
---The guardian is a defensive class who protects the other members of their party by standing as a shield for the weak. Your abilities revolve around controlling and moving about the battlefield and keeping enemies away from the more vulnerable members of your group and forced to face your unyielding self. Pushing, pulling, taunting are all within your arsonal to accomplish this goal.
-
---While strong on the defensive end, guardians do not offer much in the way of offensive capabilities. You will rely more on keeping your allies safe so that they may fight to their full potential.'),
---	('Hunter', 'Damage', 'Fegown! Fegown Crocket, king of the wild frontier!', 'Amongst a world full of strife you never find yourself alone. People lie, steal, and murder yet you have befriended those who are above such deceit. The wild beasts of the world are at your call and together you work as one to accomplish any goal you may require. 
-
---As a hunter you find yourself with an arsenal of companions you may call to your side, each bringing a unique purpose to the table to help yourself and your party. Your skill at hunting and catching your enemies is unmatched and few can escape your grasp.
-
---You will find your place in the group with great combat strength matched with the utilities that your pets can offer.'),
---	('Marksman', 'Damage', 'A good marksman is not known by his weapon but by his aim.', 'Accuracy and Precision are your forte being able to eliminate threats before they may become a problem. From a distance you can affect the battlefield from the safety of your ranged weapon.
-
---As a marksmen your role will be dedicated to eliminating key enemies who would be hard to reach by melee means. Whether it be a single foe or many you can eliminate them before they come in range to become a threat to the others in your party.'),
---	('Paladin', 'Theron, Savior of the World', 'My choices are measured against my own soul. Not against the stains on theirs.', 'This is the call of the paladin: to protect the weak, to bring justice to the unjust, and to vanquish evil from the darkest corners of the world. These holy warriors are equipped with plate armor so they can confront the toughest of foes and empowered to heal the wounds of the fallen.
-
---Paladin are a hybrid class capable of tanking, damaging, and healing, though do not excel in any of these areas compared to classes who specialize in one. Nonetheless, a paladin can fill in the gaps of any party to find an important purpose. Keep in mind what your party is lacking when you spend your specialization points to pick up the slack where it may be.'),
---	('Priest', 'Caster, Support, Damage, Healer', 'I baked them cookies and they would not eat. I shouted encouragements and they would not listen. Now they will feel my wrath and I will bathe in their blood!', 'The following text is for the sake of Theron and Fegown helping me format this class. I’d like a full page dedicated to the introduction of this class, with a picture, a summary description, and maybe some flavor to go along with it. 
---Healing Class
---Many different kinds of heals for various situations
-
---Damage option available by using your heals as combat abilities. 
-
---The ultimate support class'),
---	('Sorcerer', 'Damage, Stuff', 'I have a small cube like hat on my head. They will come to know my shame!', 'The following text is for the sake of Theron and Fegown helping me format this class. I’d like a full page dedicated to the introduction of this class, with a picture, a summary description, and maybe some flavor to go along with it. 
---Heavy dps class
---Disables on enemies
---AoE powers
---Focuses on the four elements
---Wide area effects'),
---	('Wizard', 'Damage', 'I don''t always cast spells but when I do I cast them.', 'The following text is for the sake of Theron and Fegown helping me format this class. I’d like a full page dedicated to the introduction of this class, with a picture, a summary description, and maybe some flavor to go along with it. 
---Magical utility
---Low damage output')
---END
---GO
 
 
 --/* HEROIC AWAKENINGS */
@@ -158,41 +121,9 @@ GO
 --GO
 
 
---IF NOT EXISTS (SELECT 1 FROM HEROICAWAKENINGS)
---BEGIN
---	INSERT INTO HEROICAWAKENINGS (NAME, FLAVORTEXT, DESCRIPTION)
---	VALUES
---	('Chosen Champion', '', ''),
---	('Elemental Avatar', '', ''),
---	('Empowering Mind', '', ''),
---	('Summoner''s Call', '', ''),
---	('Tainted Blood', '', ''),
---	('War Forge', '', '')
---END
---GO
 
 
 
-
---/* POWERS */
---IF NOT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'POWERS')
---BEGIN
---	CREATE TABLE POWERS
---	(
---		ID int IDENTITY(1,1) PRIMARY KEY,
---		NAME nvarchar(100) NOT NULL,
---		CATEGORY int NOT NULL,
---		POWERTYPE int NOT NULL,
---		ACTIONTYPE int,
---		EFFECTTYPE int,
---		RANGE int,
---		AURARANGE int,
---		DESCRIPTION nvarchar(MAX),
---		TIER int NOT NULL,
---		ACTIVE bit NOT NULL
---	);
---END
---GO
 
 
 --IF NOT EXISTS (SELECT 1 FROM POWERS)
