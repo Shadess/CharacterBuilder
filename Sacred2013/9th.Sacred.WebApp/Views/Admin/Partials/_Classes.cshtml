@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-group-vertical">
         <button type="button" class="btn btn-primary" ng-click="SelectClass(GetBlankClass())">Create</button>
-        <button type="button" class="btn btn-default" ng-repeat="class in ClassList" ng-click="SelectClass(class)" ng-class="{active: isSelected(class.Id)}">{{class.Name}}</button>
+        <button type="button" class="btn btn-default" ng-repeat="class in admins.ClassList" ng-click="SelectClass(class)" ng-class="{active: isSelected(class.Id)}">{{class.Name}}</button>
     </div>
 
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group col-lg-1 col-md-1 pull-right">
-                <input type="submit" value="{{ButtonText}}" class="btn btn-primary pull-right" ng-disabled="ClassesLoading" />
+                <input type="submit" value="{{ButtonText}}" class="btn btn-primary pull-right" ng-disabled="admins.ClassesLoading" />
             </div>
 
             <div class="clearfix"></div>

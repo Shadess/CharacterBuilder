@@ -22,25 +22,15 @@
 
     $scope.Race = $scope.GetBlankRace();
     $scope.ShowRaceSuccess = false;
-    $scope.RaceList = [];
-    $scope.RacesLoading = true;
 
     $scope.OriginChoices = ['Human', 'Fey', 'Fey/Human', 'Kar'];
     $scope.SocialStatusChoices = ['Very High', 'High', 'Medium', 'Low', 'Very Low', 'Extremely Low'];
 
 
-    // INIT WEB CALLS
-    var apiURL = $window.API_URL + "Race/GetAll?userToken=" + $scope.userCookie.UserToken;
-    $http.get(apiURL).success(function (data) {
-        $scope.RaceList = data;
-        $scope.RacesLoading = false;
-    });
-
-
     // FUNCTIONS
     $scope.AddRace = function () {
         var apiUrl = $window.API_URL + "Race/AddRace";
-        if ($scope.ButtonText === "Edit") {
+        if ($scope.ButtonText === "Save") {
             apiUrl = $window.API_URL + "Race/EditRace";
         }
 
@@ -54,7 +44,7 @@
 
             if ($scope.ButtonText === "Add") {
                 $scope.Race.Id = data;
-                $scope.RaceList.push($scope.Race);
+                $scope.$emit('RaceAddedEvent', $scope.Race);
                 $scope.Race = $scope.GetBlankRace();
             }
 
@@ -70,7 +60,7 @@
         $scope.RaceTab = race.Id;
 
         if (race.Id > 0) {
-            $scope.ButtonText = "Edit";
+            $scope.ButtonText = "Save";
         }
         else {
             $scope.ButtonText = "Add";
@@ -89,7 +79,7 @@
         var apiUrl = $window.API_URL + "Race/DeleteRaceById?userToken=" + $scope.userCookie.UserToken + "&id=" + $scope.Race.Id;
         $http.get(apiUrl).success(function (data) {
             // Handle delete
-            $scope.RaceList.splice($scope.RaceList.indexOf($scope.Race), 1);
+            $scope.$emit('RaceDeletedEvent', $scope.Race);
             $scope.SelectRace($scope.GetBlankRace());
         });
     };

@@ -18,16 +18,16 @@
 
     $scope.Class = $scope.GetBlankClass();
     $scope.ShowClassSuccess = false;
-    $scope.ClassList = [];
-    $scope.ClassesLoading = true;
+    //$scope.ClassList = [];
+    //$scope.ClassesLoading = true;
 
 
-    // INIT WEB CALLS
-    var apiURL = $window.API_URL + "Class/GetAll?userToken=" + $scope.userCookie.UserToken;
-    $http.get(apiURL).success(function (data) {
-        $scope.ClassList = data;
-        $scope.ClassesLoading = false;
-    });
+    //// INIT WEB CALLS
+    //var apiURL = $window.API_URL + "Class/GetAll?userToken=" + $scope.userCookie.UserToken;
+    //$http.get(apiURL).success(function (data) {
+    //    $scope.ClassList = data;
+    //    $scope.ClassesLoading = false;
+    //});
 
 
     // FUNCTIONS
@@ -47,7 +47,7 @@
 
             if ($scope.ButtonText === "Add") {
                 $scope.Class.Id = data;
-                $scope.ClassList.push($scope.Class);
+                $scope.$emit('ClassAddedEvent', $scope.Class);
                 $scope.Class = $scope.GetBlankClass();
             }
 
@@ -82,7 +82,7 @@
         var apiUrl = $window.API_URL + "Class/DeleteClassById?userToken=" + $scope.userCookie.UserToken + "&id=" + $scope.Class.Id;
         $http.get(apiUrl).success(function (data) {
             // Handle delete
-            $scope.ClassList.splice($scope.ClassList.indexOf($scope.Class), 1);
+            $scope.$emit('ClassDeletedEvent', $scope.Race);
             $scope.SelectClass($scope.GetBlankClass());
         });
     };

@@ -252,6 +252,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\Controllers\AdminClassController.js" />
     <Content Include="Scripts\Controllers\AdminController.js" />
+    <Content Include="Scripts\Controllers\AdminPowerController.js" />
     <Content Include="Scripts\Controllers\AdminRaceController.js" />
     <Content Include="Scripts\Controllers\ProfileController.js" />
     <Content Include="Scripts\Factories\AuthHttpResponseInterceptor.js" />
