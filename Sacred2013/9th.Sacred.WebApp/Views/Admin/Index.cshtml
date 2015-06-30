@@ -22,8 +22,8 @@
         @Html.Partial("_Classes")
     </div>
 
-    <div @*ng-controller="AdminPowersController"*@ ng-cloak ng-show="admins.isSelected(3)">
-        <h3>Powers</h3>
+    <div ng-controller="AdminPowerController" ng-cloak ng-show="admins.isSelected(3)">
+        @Html.Partial("_Powers")
     </div>
 
 </div>

@@ -273,6 +273,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Modules\AdminApp.js" />
+    <Content Include="Scripts\Modules\checklist-model.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -313,6 +314,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Partials\_Races.cshtml" />
     <Content Include="Views\Admin\Partials\_Classes.cshtml" />
+    <Content Include="Views\Admin\Partials\_Powers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\9th.Sacred.ApiInterface\9th.Sacred.ApiInterface.csproj">

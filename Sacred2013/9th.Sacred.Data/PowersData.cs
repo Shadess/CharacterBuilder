@@ -43,10 +43,10 @@ namespace _9th.Sacred.Data
                 {
                     Power power = PowersData.CreateObjectFromDataRow(row);
 
-                    foreach (DataRow mapRow in powerMapTable.Select("POWERID_FK = " + power.Id))
-                    {
-                        power.CategoryMapIds.Add(Convert.ToInt32(mapRow["CATEGORYOBJECTID"]));
-                    }
+                    //foreach (DataRow mapRow in powerMapTable.Select("POWERID_FK = " + power.Id))
+                    //{
+                    //    power.CategoryMapIds.Add(Convert.ToInt32(mapRow["CATEGORYOBJECTID"]));
+                    //}
 
                     powers.Add(power);
                 }

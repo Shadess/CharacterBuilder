@@ -13,6 +13,7 @@ namespace _9th.Sacred.Objects.Data
         public int Id { get; set; }
         public string Name { get; set; }
         public PowerCategory Category { get; set; }
+        public int CategoryId { get; set; }
         public PowerType Type { get; set; }
         public ActionType ActionType { get; set; }
         public EffectType EffectType { get; set; }
@@ -23,7 +24,6 @@ namespace _9th.Sacred.Objects.Data
         public bool Active { get; set; }
 
         // Extra variables
-        public List<int> CategoryMapIds { get; set; }
         public List<PowerSpecialization> Specializations { get; set; }
 
         public Power()
@@ -36,6 +36,8 @@ namespace _9th.Sacred.Objects.Data
         {
             Id = 0;
             Name = string.Empty;
+            Category = 0;
+            CategoryId = 0;
             Type = 0;
             ActionType = 0;
             EffectType = 0;
@@ -45,7 +47,6 @@ namespace _9th.Sacred.Objects.Data
             Tier = 0;
             Active = true;
 
-            CategoryMapIds = new List<int>();
             Specializations = new List<PowerSpecialization>();
         }
     }

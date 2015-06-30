@@ -20,15 +20,15 @@ namespace _9th.Sacred.Data
 
         private const string SQL_GET_ALL_CLASSES = @"
             SELECT * FROM CLASSES
-            SELECT * FROM POWERS P
-	            INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
-            WHERE ACTIVE = 1 AND p.CATEGORY = 2 AND pm.CATEGORY = 2
-            ORDER BY TIER, NAME
-            SELECT ps.* FROM POWERSPECIALIZATIONS ps
-	            INNER JOIN POWERS p on p.ID = ps.POWERID_FK
-	            INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
-            WHERE p.ACTIVE = 1 AND p.CATEGORY = 2 AND pm.CATEGORY = 2
         ";
+        //SELECT * FROM POWERS P
+        //    INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
+        //WHERE ACTIVE = 1 AND p.CATEGORY = 2 AND pm.CATEGORY = 2
+        //ORDER BY TIER, NAME
+        //SELECT ps.* FROM POWERSPECIALIZATIONS ps
+        //    INNER JOIN POWERS p on p.ID = ps.POWERID_FK
+        //    INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
+        //WHERE p.ACTIVE = 1 AND p.CATEGORY = 2 AND pm.CATEGORY = 2
 
         private const string SQL_ADD_CLASS = @"
             INSERT INTO CLASSES
@@ -62,36 +62,45 @@ namespace _9th.Sacred.Data
                 data = ExecuteSqlQuery(cmd);
             }
 
-            if (!DataSetIsEmpty(data) && data.Tables.Count > 1 && data.Tables[1].Rows.Count > 0)
+            if (!DataSetIsEmpty(data))
             {
-                DataTable powerTable = data.Tables[1];
-                DataTable specializationsTable = null;
-                if (data.Tables.Count > 2 && data.Tables[2].Rows.Count > 0)
-                {
-                    specializationsTable = data.Tables[2];
-                }
-
                 foreach (DataRow row in data.Tables[0].Rows)
                 {
                     Class newClass = ClassesData.CreateObjectFromDataRow(row);
-
-                    foreach (DataRow powerRow in powerTable.Select("OBJECTID = " + newClass.Id))
-                    {
-                        Power newPower = PowersData.CreateObjectFromDataRow(powerRow);
-                        if (specializationsTable != null)
-                        {
-                            foreach (DataRow specialRow in specializationsTable.Select("POWERID_FK = " + newPower.Id))
-                            {
-                                newPower.Specializations.Add(PowerSpecializationsData.CreateObjectFromDataRow(specialRow));
-                            }
-                        }
-
-                        newClass.Powers.Add(newPower);
-                    }
-
                     classes.Add(newClass);
                 }
             }
+
+            //if (!DataSetIsEmpty(data) && data.Tables.Count > 1 && data.Tables[1].Rows.Count > 0)
+            //{
+            //    DataTable powerTable = data.Tables[1];
+            //    DataTable specializationsTable = null;
+            //    if (data.Tables.Count > 2 && data.Tables[2].Rows.Count > 0)
+            //    {
+            //        specializationsTable = data.Tables[2];
+            //    }
+
+            //    foreach (DataRow row in data.Tables[0].Rows)
+            //    {
+            //        Class newClass = ClassesData.CreateObjectFromDataRow(row);
+
+            //        foreach (DataRow powerRow in powerTable.Select("OBJECTID = " + newClass.Id))
+            //        {
+            //            Power newPower = PowersData.CreateObjectFromDataRow(powerRow);
+            //            if (specializationsTable != null)
+            //            {
+            //                foreach (DataRow specialRow in specializationsTable.Select("POWERID_FK = " + newPower.Id))
+            //                {
+            //                    newPower.Specializations.Add(PowerSpecializationsData.CreateObjectFromDataRow(specialRow));
+            //                }
+            //            }
+
+            //            newClass.Powers.Add(newPower);
+            //        }
+
+            //        classes.Add(newClass);
+            //    }
+            //}
 
             return classes;
         }

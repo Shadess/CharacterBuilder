@@ -10,6 +10,8 @@
     self.RacesLoading = true;
     self.ClassList = [];
     self.ClassesLoading = true;
+    self.PowerList = [];
+    self.PowersLoading = true;
 
 
     // Init functions
@@ -19,10 +21,16 @@
         self.RacesLoading = false;
     });
 
-    var apiURL = $window.API_URL + "Class/GetAll?userToken=" + self.userCookie.UserToken;
-    $http.get(apiURL).success(function (data) {
+    var classesApiURL = $window.API_URL + "Class/GetAll?userToken=" + self.userCookie.UserToken;
+    $http.get(classesApiURL).success(function (data) {
         self.ClassList = data;
         self.ClassesLoading = false;
+    });
+
+    var powersApiUrl = $window.API_URL + "Power/GetAll?userToken=" + self.userCookie.UserToken;
+    $http.get(powersApiUrl).success(function (data) {
+        self.PowerList = data;
+        self.PowersLoading = false;
     });
 
 
