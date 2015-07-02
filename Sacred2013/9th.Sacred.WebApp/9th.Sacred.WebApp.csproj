@@ -281,6 +281,7 @@
     <Content Include="Scripts\sacred.core.js" />
     <Content Include="Scripts\Sacred\CharacterCreate.js" />
     <Content Include="Scripts\Sacred\LoginScripts.js" />
+    <Content Include="Scripts\Sacred\ObjectCreations.js" />
     <Content Include="Scripts\Sacred\ProfileScript.js" />
     <Content Include="Scripts\Sacred\SacredApp.js" />
     <Content Include="Scripts\_references.js" />

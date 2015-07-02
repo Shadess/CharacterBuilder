@@ -7,18 +7,15 @@ using System.Threading.Tasks;
 
 namespace _9th.Sacred.Objects.Data
 {
-    public class RacialPower
+    public class RacePower
     {
         public int Id { get; set; }
+        public int RaceId { get; set; }
         public string Name { get; set; }
-        public PowerType Type { get; set; }
-        public ActionType ActionType { get; set; }
-        public EffectType EffectType { get; set; }
-        public int Range { get; set; }
-        public int AuraRange { get; set; }
         public string Description { get; set; }
+        public Attributes Attributes { get; set; }
 
-        public RacialPower()
+        public RacePower()
         {
             InitializeValues();
         }
@@ -27,13 +24,10 @@ namespace _9th.Sacred.Objects.Data
         public void InitializeValues()
         {
             Id = 0;
+            RaceId = 0;
             Name = string.Empty;
-            Type = 0;
-            ActionType = 0;
-            EffectType = 0;
-            Range = 0;
-            AuraRange = 0;
             Description = string.Empty;
+            Attributes = new Attributes();
         }
     }
 }

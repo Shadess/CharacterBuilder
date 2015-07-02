@@ -18,17 +18,17 @@ namespace _9th.Sacred.WebApi.Controllers
         }
 
         [HttpPost]
-        public int AddRace(RaceRequest request)
+        public Race AddRace(RaceRequest request)
         {
             AuthenticateUserToken(request.UserToken);
             return MyRaceService.AddRace(request.Race);
         }
 
         [HttpPost]
-        public void EditRace(RaceRequest request)
+        public Race EditRace(RaceRequest request)
         {
             AuthenticateUserToken(request.UserToken);
-            MyRaceService.EditRace(request.Race);
+            return MyRaceService.EditRace(request.Race);
         }
 
         [HttpGet]

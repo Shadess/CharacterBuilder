@@ -17,7 +17,8 @@ namespace _9th.Sacred.Objects.Data
         public string SocialStatus { get; set; }
         public string FlavorText { get; set; }
         public string Description { get; set; }
-        public List<Power> Powers { get; set; }
+
+        public List<RacePower> RacePowers { get; set; }
 
         public Race()
         {
@@ -36,7 +37,8 @@ namespace _9th.Sacred.Objects.Data
             SocialStatus = string.Empty;
             FlavorText = string.Empty;
             Description = string.Empty;
-            Powers = new List<Power>();
+
+            RacePowers = new List<RacePower>();
         }
     }
 }

@@ -1,26 +1,10 @@
 ﻿var AdminRaceController = function ($scope, $window, $http, $cookies, $timeout) {
-    // INIT FUNCTIONS
-    $scope.GetBlankRace = function () {
-        return {
-            Id: 0,
-            Name: '',
-            CommonName: '',
-            Lifespan: '',
-            Height: '',
-            Origin: 'Human',
-            SocialStatus: 'Very High',
-            FlavorText: '',
-            Description: ''
-        };
-    };
-
-
     // VARIABLES
     $scope.userCookie = $cookies.getObject(SACRED_COOKIE);
     $scope.ButtonText = "Add";
     $scope.RaceTab = 0;
 
-    $scope.Race = $scope.GetBlankRace();
+    $scope.Race = new $window.SacredRace();
     $scope.ShowRaceSuccess = false;
 
     $scope.OriginChoices = ['Human', 'Fey', 'Fey/Human', 'Kar'];
@@ -41,11 +25,11 @@
 
         $http.post(apiUrl, data).success(function (data) {
             $scope.ShowRaceSuccess = true;
+            $scope.Race = data;
 
             if ($scope.ButtonText === "Add") {
-                $scope.Race.Id = data;
                 $scope.$emit('RaceAddedEvent', $scope.Race);
-                $scope.Race = $scope.GetBlankRace();
+                $scope.Race = new $window.SacredRace();
             }
 
             // Auto hide success alert
@@ -80,8 +64,16 @@
         $http.get(apiUrl).success(function (data) {
             // Handle delete
             $scope.$emit('RaceDeletedEvent', $scope.Race);
-            $scope.SelectRace($scope.GetBlankRace());
+            $scope.SelectRace(new $window.SacredRace());
         });
+    };
+
+    $scope.ResetRace = function () {
+        return new $window.SacredRace();
+    };
+
+    $scope.AddPower = function () {
+        $scope.Race.RacePowers.push(new $window.SacredRacePower());
     };
 };
 

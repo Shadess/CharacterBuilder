@@ -20,10 +20,8 @@ namespace _9th.Sacred.Data
 
         private const string SQL_GET_ALL_RACES = @"
             SELECT * FROM RACES
+            SELECT * FROM RACEPOWERS
         ";
-        //SELECT * FROM POWERS p
-        //        INNER JOIN POWERSMAP pm on pm.POWERID_FK = p.ID
-        //    WHERE ACTIVE = 1 and p.CATEGORY = 1 AND pm.CATEGORY = 1
 
         private const string SQL_ADD_RACE = @"
             INSERT INTO RACES
@@ -61,21 +59,20 @@ namespace _9th.Sacred.Data
                 data = ExecuteSqlQuery(cmd);
             }
 
-            //if (!DataSetIsEmpty(data) && data.Tables.Count == 2 && data.Tables[1].Rows.Count > 0)
-            if (!DataSetIsEmpty(data))
+            if (!DataSetIsEmpty(data) && data.Tables.Count == 2 && data.Tables[1].Rows.Count > 0)
             {
-                //DataTable powerTable = data.Tables[1];
+                DataTable powerTable = data.Tables[1];
 
                 foreach (DataRow row in data.Tables[0].Rows)
                 {
-                    Race newRace = RacesData.CreateObjectFromDataRow(row);
+                    Race race = RacesData.CreateObjectFromDataRow(row);
 
-                    //foreach (DataRow powerRow in powerTable.Select("OBJECTID = " + newRace.Id))
-                    //{
-                    //    newRace.Powers.Add(PowersData.CreateObjectFromDataRow(powerRow));
-                    //}
+                    foreach (DataRow powerRow in powerTable.Select("RACEID_FK = " + race.Id))
+                    {
+                        race.RacePowers.Add(RacePowersData.CreateObjectFromDataRow(powerRow));
+                    }
 
-                    races.Add(newRace);
+                    races.Add(race);
                 }
             }
 

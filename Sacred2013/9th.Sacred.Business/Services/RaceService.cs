@@ -24,16 +24,42 @@ namespace _9th.Sacred.Business.Services
             return races;
         }
 
-        public int AddRace(Race newRace)
+        public Race AddRace(Race newRace)
         {
+            // Add race
             RacesData raceData = new RacesData(CurrentDataContext);
-            return raceData.AddRace(newRace);
+            newRace.Id = raceData.AddRace(newRace);
+
+            RacePowersData powersData = new RacePowersData(CurrentDataContext);
+            foreach (RacePower power in newRace.RacePowers)
+            {
+                power.RaceId = newRace.Id;
+                power.Id = powersData.AddPower(power);
+            }
+
+            return newRace;
         }
 
-        public void EditRace(Race race)
+        public Race EditRace(Race race)
         {
             RacesData raceData = new RacesData(CurrentDataContext);
             raceData.UpdateRace(race);
+
+            RacePowersData powersData = new RacePowersData(CurrentDataContext);
+            foreach (RacePower power in race.RacePowers)
+            {
+                if (power.Id == 0)
+                {
+                    power.RaceId = race.Id;
+                    power.Id = powersData.AddPower(power);
+                }
+                else
+                {
+                    powersData.UpdatePower(power);
+                }
+            }
+
+            return race;
         }
 
         public void DeleteClassById(int id)
