@@ -75,6 +75,14 @@
     $scope.AddPower = function () {
         $scope.Race.RacePowers.push(new $window.SacredRacePower());
     };
+
+    $scope.RemovePower = function (power) {
+        var apiUrl = $window.API_URL + "Race/RemovePowerById?userToken=" + $scope.userCookie.UserToken + "&id=" + power.Id;
+        $http.get(apiUrl).success(function (data) {
+            // Remove power from array
+            $scope.Race.RacePowers.splice($scope.Race.RacePowers.indexOf(power), 1);
+        });
+    };
 };
 
 AdminRaceController.$inject = ['$scope', '$window', '$http', '$cookies', '$timeout'];

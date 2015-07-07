@@ -67,5 +67,11 @@ namespace _9th.Sacred.Business.Services
             RacesData raceData = new RacesData(CurrentDataContext);
             raceData.DeleteRaceById(id);
         }
+
+        public void RemovePower(int id)
+        {
+            RacePowersData powersData = new RacePowersData(CurrentDataContext);
+            powersData.RemovePower(id);
+        }
     }
 }

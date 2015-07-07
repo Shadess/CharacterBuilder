@@ -33,6 +33,8 @@ namespace _9th.Sacred.Data
             WHERE ID = @ID
         ";
 
+        private const string SQL_DELETE_RACEPOWER = @"DELETE FROM RACEPOWERS WHERE ID = @ID";
+
         #endregion
 
 
@@ -54,6 +56,15 @@ namespace _9th.Sacred.Data
             using (SqlCommand cmd = new SqlCommand(SQL_UPDATE_RACEPOWER))
             {
                 LoadParameters(cmd, power);
+                ExecuteSqlNonQuery(cmd);
+            }
+        }
+
+        public void RemovePower(int id)
+        {
+            using (SqlCommand cmd = new SqlCommand(SQL_DELETE_RACEPOWER))
+            {
+                cmd.Parameters.AddWithValue("@ID", id);
                 ExecuteSqlNonQuery(cmd);
             }
         }

@@ -37,5 +37,12 @@ namespace _9th.Sacred.WebApi.Controllers
             AuthenticateUserToken(userToken);
             MyRaceService.DeleteClassById(id);
         }
+
+        [HttpGet]
+        public void RemovePowerById(string userToken, int id)
+        {
+            AuthenticateUserToken(userToken);
+            MyRaceService.RemovePower(id);
+        }
     }
 }
